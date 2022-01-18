@@ -1,0 +1,31 @@
+{
+	"names": "playcamping",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev",
+		"start": "next start"
+	},
+	"dependencies": {
+		"babel-plugin-inline-react-svg": "^2.0.1",
+		"babel-plugin-styled-components": "^2.0.2",
+		"next": "^12.0.8",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"styled-components": "^5.3.3",
+		"styled-reset": "^4.3.4"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.9",
+		"@types/react": "^17.0.38",
+		"@types/react-dom": "^17.0.11",
+		"@types/styled-components": "^5.1.20",
+		"@typescript-eslint/eslint-plugin": "^5.10.0",
+		"@typescript-eslint/parser": "^5.10.0",
+		"eslint": "^8.7.0",
+		"eslint-plugin-react": "^7.28.0",
+		"typescript": "^4.5.4"
+	}
+}
