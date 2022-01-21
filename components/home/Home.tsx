@@ -1,10 +1,12 @@
 import React from "react";
-import RegisterLocation from "../../pages/room/register/RegisterLocation";
+import RegisterRoomGeometry from "../room/register/RegisterRoomGeometry";
+import RegisterRoomLocation from "../room/register/RegisterRoomLocation";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <RegisterLocation />
+      <RegisterRoomLocation />
+      <RegisterRoomGeometry />
     </div>
   );
 };
