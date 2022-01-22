@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RegisterRoomState } from "../types/reduxState";
+//책에는 여기서 type을 정해주는데
+//types디렉에서 reduxState로 가져오니까 안해도 되는거 같음
 
 //* 초기 상태
 const initialState: RegisterRoomState = {

@@ -7,6 +7,7 @@ import throttle from "lodash/throttle";
 import palette from "../../../styles/palette";
 import { useDispatch } from "react-redux";
 import { registerRoomActions } from "../../../store/registerRoom";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -111,11 +112,15 @@ const RegisterRoomGeometry: React.FC = () => {
     <>
       <Container>
         <h2>핀이 놓인 위치가 정확한가요?</h2>
-        <h3>4단계</h3>
+        <h3>1.5단계</h3>
         <p>필요한 경우 핀이 정확한 위치에 자리하도록 조정할 수 있어요.</p>
         <div className='register-room-geometry-map-wrapper'>
           <div ref={mapRef} id='map' />
         </div>
+        {/* <RegisterRoomFooter
+          prevHref='/room/register/location'
+          nextHref='/room/register/image'
+        /> */}
       </Container>
     </>
   );
