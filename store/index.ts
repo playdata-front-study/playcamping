@@ -9,7 +9,7 @@ import searchSite from './searchSite';
 
 const rootReducer = combineReducers({
 	common: common.reducer,
-	// user: user.reducer,
+	user: user.reducer,
 	// auth: auth.reducer,
 	registerRoom: registerRoom.reducer,
 	searchSite: searchSite.reducer,
