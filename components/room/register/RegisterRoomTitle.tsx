@@ -6,6 +6,7 @@ import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 import Input from "../../common/Input";
+import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -38,7 +39,7 @@ const RegisterRoomTitle: React.FC = () => {
 
   return (
     <Container>
-      <h2>캠핑장의 제목을 만드세요.</h2>
+      <h2>📌캠핑장의 제목을 만드세요.</h2>
       <h3>3단계</h3>
       <div className='register-room-descript-wrapper'>
         <Input
@@ -47,8 +48,9 @@ const RegisterRoomTitle: React.FC = () => {
           onChange={onChangeTitle}
         />
       </div>
+      <RegisterRoomChecklist />
       <RegisterRoomFooter
-        prevHref='/room/register/image'
+        prevHref='/room/register/photo'
         nextHref='/room/register/price'
       />
     </Container>

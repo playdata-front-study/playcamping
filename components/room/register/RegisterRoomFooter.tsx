@@ -12,7 +12,7 @@ const Container = styled.footer`
   display: flex;
   justify-content: space-between; /** ? */
   align-items: center;
-  width: 548px;
+  width: 90%;
   height: 82px;
   padding: 14px 30px 20px;
   background-color: white;
@@ -22,10 +22,14 @@ const Container = styled.footer`
     display: flex;
     align-items: center;
     color: ${palette.darkgray};
+    text-decoration-line: none;
     cursor: pointer;
     svg {
       margin-right: 8px;
     }
+  }
+  .register-room-footer-continue {
+    text-decoration-line: none;
   }
 `;
 
@@ -52,7 +56,8 @@ const RegisterRoomFooter: React.FC<IProps> = ({
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     if (!isValid) {
-      event.preventDefault();
+      //preventDefault(): href 통해서 페이지 이동되는걸 막아준다?? 여기선 왜 써야할까?
+      // event.preventDefault();
       setValidateMode(true);
     }
   };
@@ -66,7 +71,7 @@ const RegisterRoomFooter: React.FC<IProps> = ({
         </a>
       </Link>
       <Link href={nextHref || ""}>
-        <a>
+        <a className='register-room-footer-continue'>
           <Button color='darkgray' onClick={onClickNext}>
             계속
           </Button>

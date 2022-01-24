@@ -16,7 +16,7 @@ export const getLocationInfoAPI = async ({
   latitude,
   longitude,
 }: {
-  latitude: number;
+  latitude: number; //왜 이렇게 쓰는거야..?
   longitude: number;
 }) =>
   axios.get<GetLocationInfoAPIResponse>(

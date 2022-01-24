@@ -61,6 +61,7 @@ const RegisterRoomGeometry: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
   const latitude = useSelector((state) => state.registerRoom.latitude);
   const longitude = useSelector((state) => state.registerRoom.longitude);
+
   const dispatch = useDispatch();
 
   const loadMap = async () => {
@@ -111,16 +112,16 @@ const RegisterRoomGeometry: React.FC = () => {
   return (
     <>
       <Container>
-        <h2>핀이 놓인 위치가 정확한가요?</h2>
+        <h2>🗺️핀이 놓인 위치가 정확한가요?</h2>
         <h3>1.5단계</h3>
         <p>필요한 경우 핀이 정확한 위치에 자리하도록 조정할 수 있어요.</p>
         <div className='register-room-geometry-map-wrapper'>
           <div ref={mapRef} id='map' />
         </div>
-        {/* <RegisterRoomFooter
+        <RegisterRoomFooter
           prevHref='/room/register/location'
-          nextHref='/room/register/image'
-        /> */}
+          nextHref='/room/register/photo'
+        />
       </Container>
     </>
   );

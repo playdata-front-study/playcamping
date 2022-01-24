@@ -5,28 +5,6 @@ import { RegisterRoomState } from "../types/reduxState";
 
 //* 초기 상태
 const initialState: RegisterRoomState = {
-  //* 건물유형 큰 범주
-  largeBuildingType: null,
-  //* 건물유형
-  buildingType: null,
-  //* 숙소유형
-  roomType: null,
-  //* 게스트만을 위해 만들어진 숙소인가
-  isSetUpForGuest: null,
-  //* 최대 숙박 인원
-  maximumGuestCount: 1,
-  //* 침실 개수
-  bedroomCount: 0,
-  //* 침대 개수
-  bedCount: 1,
-  //* 침대 유형
-  bedList: [],
-  //* 공용공간 침대 유형
-  publicBedList: [],
-  //* 욕실 개수
-  bathroomCount: 1,
-  //* 욕실 유형
-  bathroomType: null,
   //* 국가/지역
   country: "",
   //* 시/도
@@ -44,13 +22,7 @@ const initialState: RegisterRoomState = {
   //* 경도
   longitude: 0,
   //* 편의시설
-  amentities: [],
-  //* 편의공간
-  conveniences: [],
-  //* 편의공간
   photos: [],
-  //* 숙소 설명
-  description: "",
   //* 숙소 제목
   title: "",
   //* 숙소 요금
@@ -65,11 +37,6 @@ const registerRoom = createSlice({
   name: "registerRoom",
   initialState,
   reducers: {
-    // //* 최대 숙박 인원 변경하기
-    // setMaximumGuestCount(state, action: PayloadAction<number>) {
-    //   state.maximumGuestCount = action.payload;
-    //   return state;
-    // },
     //* 국가 변경하기
     setCountry(state, action: PayloadAction<string>) {
       state.country = action.payload;

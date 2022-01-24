@@ -7,6 +7,7 @@ import { useSelector } from "../../../store";
 import Input from "../../common/Input";
 import { makeMoneyString } from "../../../lib/utils";
 import { registerRoomActions } from "../../../store/registerRoom";
+import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -51,13 +52,14 @@ const RegisterRoomPrice: React.FC = () => {
   // ? 왜 string으로 value를 받는거지???
   return (
     <Container>
-      <h2>캠핑장 요금 설정하기</h2>
+      <h2>💸캠핑장 요금 설정하기</h2>
       <h3>4단계</h3>
       <Input
         label='기본요금'
         value={makeMoneyString(String(price))}
         onChange={onChangePrice}
       />
+      <RegisterRoomChecklist />
       <RegisterRoomFooter
         prevHref='/room/register/title'
         nextHref='/room/register/date'

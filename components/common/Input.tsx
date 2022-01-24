@@ -20,6 +20,7 @@ const Container = styled.div<InputContainerProps>`
     position: relative;
     width: 100%;
     height: 46px;
+    //상우하좌. 위 오른쪽 아래 왼쪽. '위'부터 시계방향
     padding: ${({ iconExist }) => (iconExist ? "0 44px 0 11px " : "0 11px")};
     border: 1px solid ${palette.gray};
     border-radius: 4px;

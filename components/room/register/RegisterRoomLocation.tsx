@@ -7,11 +7,13 @@ import { countryList } from "../../../lib/staticData";
 import Input from "../../../components/common/Input";
 import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
+
 import { getLocationInfoAPI } from "../../../lib/api/map";
 
 import palette from "../../../styles/palette";
 import { useDispatch } from "react-redux";
 import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -99,7 +101,7 @@ const RegisterRoomLocation: React.FC = () => {
         registerRoomActions.setStreetAddress(currentLocation.streetAddress)
       );
       dispatch(registerRoomActions.setPostcode(currentLocation.postcode));
-      dispatch(registerRoomActions.setLatitude(currentLocation.longitude));
+      dispatch(registerRoomActions.setLatitude(currentLocation.latitude));
       dispatch(registerRoomActions.setLongitude(currentLocation.longitude));
       // console.log(data);
     } catch (e) {
@@ -120,7 +122,7 @@ const RegisterRoomLocation: React.FC = () => {
 
   return (
     <Container>
-      <h2>캠핑장의 위치를 알려주세요.</h2>
+      <h2>🏕️캠핑장의 위치를 알려주세요.</h2>
       <h3>1단계</h3>
       <p className='register-room-step-info'>
         정확한 캠핑장 주소는 게스트가 예약을 완료한 후에만 공개됩니다.
@@ -168,11 +170,12 @@ const RegisterRoomLocation: React.FC = () => {
       <div className='register-room-location-postcode'>
         <Input label='우편번호' value={postcode} onChange={onChangePostcode} />
       </div>
-      {/* <RegisterRoomFooter
+      <RegisterRoomChecklist />
+      <RegisterRoomFooter
         isValid={false}
         prevHref='/'
         nextHref='/room/register/geometry'
-      /> */}
+      />
     </Container>
   );
 };

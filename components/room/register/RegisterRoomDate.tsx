@@ -7,6 +7,7 @@ import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import { useDispatch } from "react-redux";
 import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -75,7 +76,7 @@ const RegisterRoomDate: React.FC = () => {
 
   return (
     <Container>
-      <h2>예약 가능 여부 설정하기</h2>
+      <h2>📆예약 가능 여부 설정하기</h2>
       <h3>5단계</h3>
       <div className='register-room-date-wrapper'>
         <div className='register-room-start-date'>
@@ -105,6 +106,7 @@ const RegisterRoomDate: React.FC = () => {
           </label>
         </div>
       </div>
+      <RegisterRoomChecklist />
       <RegisterRoomFooter
         prevHref='/room/register/price'
         nextHref='/room/register/checklist'
