@@ -10,10 +10,12 @@ import Selector from '../common/Selector';
 import { dayList, monthList, yearList } from '../../lib/staticData';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
+import { signupAPI } from '../../lib/api/auth';
+import { useDispatch } from 'react-redux';
+import { userActions } from '../../store/user';
 
-const Container = styled.div`
+const Container = styled.form`
   width: 568px;
-  height: 614px;
   padding: 32px;
   background-color: white;
   z-index: 11;
@@ -76,7 +78,7 @@ const SignUpModal: React.FC = () => {
   const [birthDay, setBirthDay] = useState<string | undefined>();
   const [birthYear, setBirthYear] = useState<string | undefined>();
 
-
+  const dispatch = useDispatch();
 
   const toggleHidePassword = () => {
     setHidePassword(!hidePassword)
@@ -114,10 +116,34 @@ const SignUpModal: React.FC = () => {
   const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthYear(event.target.value);
   }
-  
+
+  //회원가입 폼 제출하기
+  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+
+    event.preventDefault();
+
+    try {
+      const signUpBody = {
+        email,
+        lastname,
+        firstname,
+        password,
+        birthday: new Date(
+          `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
+        ).toISOString(),
+      };
+      const { data } = await signupAPI(signUpBody);
+      
+      dispatch(userActions.setLoggedUser(data));
+      
+      }catch(e){
+        console.log(e);
+      }
+    };
+   
 
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       <CloseXIcon className='modal-close-x-icon'/>
       <div className='input-wrapper'>
         <Input placeholder='이메일주소' type='email' icon={<MailIcon/>} name='email' value={email} onChange={onChangeEmail}/>
