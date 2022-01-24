@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 	common: common.reducer,
 	// user: user.reducer,
 	// auth: auth.reducer,
-	// registerRoom: registerRoom.reducer,
+	registerRoom: registerRoom.reducer,
 	searchSite: searchSite.reducer,
 	// room: room.reducer,
 });
