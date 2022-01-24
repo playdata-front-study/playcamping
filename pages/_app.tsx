@@ -13,6 +13,5 @@ const app = ({ Component, pageProps }: AppProps) => {
 			<div id="root-modal"/>
 		</>
 	);
-};
 
 export default wrapper.withRedux(app);
