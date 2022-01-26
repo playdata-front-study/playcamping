@@ -9,11 +9,11 @@ const Container = styled.div`
 `;
 
 const index: NextPage = () => {
-  return (
-    <Container>
-      <Home />
-    </Container>
-  );
+	return (
+		<Container>
+			<Home />
+		</Container>
+	);
 };
 
 export default index;
