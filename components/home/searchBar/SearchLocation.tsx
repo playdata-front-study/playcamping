@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { searchSiteActions } from '../../../store/searchSite';
+import { searchRoomActions } from '../../../store/searchRoom';
 import palette from '../../../styles/palette';
 import OutsideClickHandler from 'react-outside-click-handler';
 import { useSelector } from '../../../store';
@@ -70,12 +70,12 @@ const Container = styled.div`
 `;
 
 const SearchLocation: React.FC = () => {
-	const location = useSelector((state) => state.searchSite.location);
+	const location = useSelector((state) => state.searchRoom.location);
 	const dispatch = useDispatch();
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const setLocationDispatch = (value: string) => {
-		dispatch(searchSiteActions.setLocation(value));
+		dispatch(searchRoomActions.setLocation(value));
 	};
 	const [popupOpened, setPopupOpened] = useState(false);
 

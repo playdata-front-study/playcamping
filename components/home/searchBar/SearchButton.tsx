@@ -6,8 +6,8 @@ import { useSelector } from '../../../store';
 import { makeQueryString } from '../../../lib/utils';
 
 const SearchButton: React.FC = () => {
-	const searchSite = useSelector((state) => state.searchSite);
-	const siteListHref = makeQueryString('/sites', searchSite);
+	const searchRoom = useSelector((state) => state.searchRoom);
+	const siteListHref = makeQueryString('/room', searchRoom);
 
 	return (
 		<Link href={siteListHref}>

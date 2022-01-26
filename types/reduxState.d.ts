@@ -1,7 +1,6 @@
 import { BedType, RoomType } from './room';
 import { UserType } from './user';
 
-
 //* 공통 redux state
 export type CommonState = {
 	validateMode: boolean;
@@ -14,23 +13,23 @@ export type UserState = UserType & {
 
 //* 숙소 등록하기 redux state
 type RegisterRoomState = {
-  country: string;
-  city: string;
-  district: string;
-  streetAddress: string;
-  detailAddress: string;
-  postcode: string;
-  latitude: number;
-  longitude: number;
-  photos: string[];
-  title: string;
-  price: number;
-  startDate: string | null;
-  endDate: string | null;
+	country: string;
+	city: string;
+	district: string;
+	streetAddress: string;
+	detailAddress: string;
+	postcode: string;
+	latitude: number;
+	longitude: number;
+	photos: string[];
+	title: string;
+	price: number;
+	startDate: string | null;
+	endDate: string | null;
 };
 
 //* 숙소 검색 redux state
-export type SearchSiteState = {
+export type SearchRoomState = {
 	location: string;
 	latitude: number;
 	longitude: number;
@@ -43,5 +42,4 @@ export type SearchSiteState = {
 //* 숙소 redux state
 export type RoomState = {
 	rooms: RoomType[];
-	detail: RoomType | null;
 };
