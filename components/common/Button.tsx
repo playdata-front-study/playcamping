@@ -35,7 +35,7 @@ const getButtonColor = (color: string, colorReverse: boolean) => {
 			return css`
 				background-color: ${palette.cyan};
 				color: white;
-			`;
+			`;    
 		default:
 			return css`
 				background-color: white;
@@ -43,6 +43,23 @@ const getButtonColor = (color: string, colorReverse: boolean) => {
 				border: 1px solid ${palette.gray};
 			`;
 	}
+};
+
+//버튼 크기 구하기
+const getButtonSize = (size: "small" | "medium") => {
+  switch (size) {
+    case "medium":
+      return css`
+        height: 48px;
+      `;
+    case "small":
+      return css`
+        font-size: 12px; //책대로 14로 했떠니 줄바뀜
+        height: 36px;
+      `;
+    default:
+      return "";
+  }
 };
 
 interface StyledButtonProps {
@@ -74,7 +91,7 @@ const Container = styled.button<StyledButtonProps>`
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode;
-	color?: 'darkgray' | 'white' | 'cyan';
+	color?: 'darkgray' | 'white' | 'cyan' | 'pink';
 	width?: string;
 	colorReverse?: boolean;
 	icon?: JSX.Element;

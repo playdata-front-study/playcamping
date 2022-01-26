@@ -1,9 +1,9 @@
 import { NextPage } from "next";
 import React from "react";
-import RegisterLocation from "./RegisterLocation";
+import RegisterRoomLocation from "../../../components/room/register/RegisterRoomLocation";
 
 const location: NextPage = () => {
-  return <RegisterLocation />;
+  return <RegisterRoomLocation />;
 };
 
 export default location;

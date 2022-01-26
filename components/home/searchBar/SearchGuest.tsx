@@ -5,7 +5,7 @@ import palette from '../../../styles/palette';
 import OutsideClickHandler from 'react-outside-click-handler';
 import SearchButton from './SearchButton';
 import Counter from '../../common/Counter';
-import { searchSiteActions } from '../../../store/searchSite';
+import { searchRoomActions } from '../../../store/searchRoom';
 import { useDispatch } from 'react-redux';
 
 const Container = styled.div`
@@ -69,16 +69,16 @@ const Container = styled.div`
 
 const SearchGuest: React.FC = () => {
 	const [popupOpened, setPopupOpened] = useState(false);
-	const adultCount = useSelector((state) => state.searchSite.adultCount);
-	const childrenCount = useSelector((state) => state.searchSite.childrenCount);
+	const adultCount = useSelector((state) => state.searchRoom.adultCount);
+	const childrenCount = useSelector((state) => state.searchRoom.childrenCount);
 	const dispatch = useDispatch();
 
 	const setAdultCountDispatch = (value: number) => {
-		dispatch(searchSiteActions.setAdultCount(value));
+		dispatch(searchRoomActions.setAdultCount(value));
 	};
 
 	const setChildrenCountDispatch = (value: number) => {
-		dispatch(searchSiteActions.setChildrenCount(value));
+		dispatch(searchRoomActions.setChildrenCount(value));
 	};
 
 	return (

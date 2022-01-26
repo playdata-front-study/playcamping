@@ -5,20 +5,23 @@ import {
 	useSelector as useReduxSelector,
 } from 'react-redux';
 import common from './common';
-import searchSite from './searchSite';
+import searchSite from './searchRoom';
+import user from './user';
+import registerRoom from './registerRoom';
+import auth from './auth';
+import room from './room';
 
 const rootReducer = combineReducers({
 	common: common.reducer,
-	// user: user.reducer,
-	// auth: auth.reducer,
-	// registerRoom: registerRoom.reducer,
-	searchSite: searchSite.reducer,
-	// room: room.reducer,
+	user: user.reducer,
+	auth: auth.reducer,
+	registerRoom: registerRoom.reducer,
+	searchRoom: searchSite.reducer,
+	room: room.reducer,
 });
 
 //* 스토어의 타입
 export type RootState = ReturnType<typeof rootReducer>;
-
 let initialRootState: RootState;
 
 const reducer = (state: any, action: any) => {
@@ -29,6 +32,7 @@ const reducer = (state: any, action: any) => {
 				...action.payload,
 			};
 		}
+		console.log('hydrate 실행');
 		return state;
 	}
 	return rootReducer(state, action);
@@ -46,4 +50,4 @@ const initStore: MakeStore<any> = () => {
 	return store;
 };
 
-export const wrapper = createWrapper(initStore);
+export const wrapper = createWrapper(initStore, { debug: true });

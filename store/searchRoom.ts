@@ -1,7 +1,7 @@
-import { SearchSiteState } from '../types/reduxState';
+import { SearchRoomState } from '../types/reduxState';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState: SearchSiteState = {
+const initialState: SearchRoomState = {
 	location: '',
 	latitude: 0,
 	longitude: 0,
@@ -11,8 +11,8 @@ const initialState: SearchSiteState = {
 	childrenCount: 0,
 };
 
-const searchSite = createSlice({
-	name: 'searchSite',
+const searchRoom = createSlice({
+	name: 'searchRoom',
 	initialState,
 	reducers: {
 		// 유저 변경하기
@@ -51,6 +51,6 @@ const searchSite = createSlice({
 	},
 });
 
-export const searchSiteActions = { ...searchSite.actions };
+export const searchRoomActions = { ...searchRoom.actions };
 
-export default searchSite;
+export default searchRoom;

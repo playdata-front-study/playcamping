@@ -1,25 +1,25 @@
 import { useSelector } from '../store';
 import { useDispatch } from 'react-redux';
-import { searchSiteActions } from '../store/searchSite';
+import { searchRoomActions } from '../store/searchRoom';
 
 const useSearchDate = () => {
-	const checkInDate = useSelector((state) => state.searchSite.checkInDate);
-	const checkOutDate = useSelector((state) => state.searchSite.checkOutDate);
+	const checkInDate = useSelector((state) => state.searchRoom.checkInDate);
+	const checkOutDate = useSelector((state) => state.searchRoom.checkOutDate);
 	const dispatch = useDispatch();
 
 	const setCheckInDateDispatch = (date: Date | null) => {
 		if (date) {
-			dispatch(searchSiteActions.setStartDate(date.toISOString()));
+			dispatch(searchRoomActions.setStartDate(date.toISOString()));
 		} else {
-			dispatch(searchSiteActions.setStartDate(null));
+			dispatch(searchRoomActions.setStartDate(null));
 		}
 	};
 
 	const setCheckOutDateDispatch = (date: Date | null) => {
 		if (date) {
-			dispatch(searchSiteActions.setEndDate(date.toISOString()));
+			dispatch(searchRoomActions.setEndDate(date.toISOString()));
 		} else {
-			dispatch(searchSiteActions.setEndDate(null));
+			dispatch(searchRoomActions.setEndDate(null));
 		}
 	};
 
