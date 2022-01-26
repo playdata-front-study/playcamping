@@ -39,7 +39,7 @@ const RegisterRoomTitle: React.FC = () => {
 
   return (
     <Container>
-      <h2>📌캠핑장의 제목을 만드세요.</h2>
+      <h2>✨캠핑장의 제목을 만드세요.</h2>
       <h3>3단계</h3>
       <div className='register-room-descript-wrapper'>
         <Input
