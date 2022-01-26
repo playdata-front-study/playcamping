@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSelector } from "../../../store";
@@ -51,7 +52,8 @@ const RegisterRoomChecklist: React.FC = () => {
   //* 사진 항목이 다 채워져 있는지
   const isPhotoActived = useMemo(() => {
     const { photos } = registerRoom;
-    if (!photos) {
+    //이거는 왜 isEmpty를 써야되는거지?
+    if (isEmpty(photos)) {
       return false;
     }
     return true;

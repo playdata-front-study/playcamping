@@ -112,7 +112,7 @@ const RegisterRoomGeometry: React.FC = () => {
   return (
     <>
       <Container>
-        <h2>🗺️핀이 놓인 위치가 정확한가요?</h2>
+        <h2>📌핀이 놓인 위치가 정확한가요?</h2>
         <h3>1.5단계</h3>
         <p>필요한 경우 핀이 정확한 위치에 자리하도록 조정할 수 있어요.</p>
         <div className='register-room-geometry-map-wrapper'>

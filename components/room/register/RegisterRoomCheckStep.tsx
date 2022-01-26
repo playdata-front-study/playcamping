@@ -70,7 +70,7 @@ const RegisterRoomCheckStep: React.FC<IProps> = ({
         </Link>
         <Link href={href}>
           <a className='register-room-check-step-continue-button'>
-            <Button color='darkgray' size='small' width='55px'>
+            <Button color='cyan' size='small' width='55px'>
               계속
             </Button>
           </a>

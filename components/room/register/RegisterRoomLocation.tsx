@@ -129,7 +129,7 @@ const RegisterRoomLocation: React.FC = () => {
       </p>
       <div className='register-room-location-button-wrapper'>
         <Button
-          color='darkgray'
+          color='cyan'
           colorReverse
           icon={<NavigationIcon />}
           onClick={onClickGetCurrentLocation}

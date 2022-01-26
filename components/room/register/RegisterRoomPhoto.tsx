@@ -1,3 +1,12 @@
+/**
+ * 숙소의 사진을 업로드하기 위해서는 파일을 업로드하는 api를 만들고
+ * file 타입의 인풋을 다루어서 이미지를 서버로 업로드
+ * 결과적으로는 업로드한 파일의 url을 결과 값으로 받아 리덕스에 저장
+ * 숙소 사진은 string[] 배열로 이루어져 있음
+ * 타입: type RegisterRoomState ={ photos: string[] }
+ * 리덕스의 초깃값: photos: []
+ * 리듀서: setPhotos(state, acrion: PayloadAction<string[]>) { state.photos = action.payload; }
+ */
 import React from "react";
 import styled from "styled-components";
 import palette from "../../../styles/palette";
@@ -10,6 +19,9 @@ import Button from "../../common/Button";
 import { uploadFileAPI } from "../../../lib/api/file";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 import RegisterRoomChecklist from "./RegisterRoomChecklist";
+import { useDispatch } from "react-redux";
+import { registerRoomActions } from "../../../store/registerRoom";
+import RegisterRoomPhotoCardList from "./RegisterRoomPhotoCardList";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -56,6 +68,8 @@ const Container = styled.div`
 const RegisterRoomPhoto: React.FC = () => {
   const photos = useSelector((state) => state.registerRoom.photos);
 
+  const dispatch = useDispatch();
+
   //*이미지 업로드하기
   const uploadImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
@@ -66,7 +80,10 @@ const RegisterRoomPhoto: React.FC = () => {
       const formdata = new FormData();
       formdata.append("file", file);
       try {
-        await uploadFileAPI(formdata);
+        const { data } = await uploadFileAPI(formdata);
+        if (data) {
+          dispatch(registerRoomActions.setPhotos([...photos, data]));
+        }
       } catch (e) {
         console.log(e);
       }
@@ -91,6 +108,7 @@ const RegisterRoomPhoto: React.FC = () => {
           </>
         </div>
       )}
+      {!isEmpty(photos) && <RegisterRoomPhotoCardList photos={photos} />}
       <RegisterRoomChecklist />
       <RegisterRoomFooter
         isValid={false}

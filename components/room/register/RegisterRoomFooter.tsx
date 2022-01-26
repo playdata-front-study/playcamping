@@ -72,7 +72,7 @@ const RegisterRoomFooter: React.FC<IProps> = ({
       </Link>
       <Link href={nextHref || ""}>
         <a className='register-room-footer-continue'>
-          <Button color='darkgray' onClick={onClickNext}>
+          <Button color='cyan' onClick={onClickNext}>
             계속
           </Button>
         </a>
