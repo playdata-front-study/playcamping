@@ -6,11 +6,14 @@ import {
 } from 'react-redux';
 import common from './common';
 import searchSite from './searchSite';
+import user from './user';
+import registerRoom from './registerRoom';
+import auth from './auth';
 
 const rootReducer = combineReducers({
 	common: common.reducer,
 	user: user.reducer,
-	// auth: auth.reducer,
+	auth: auth.reducer,
 	registerRoom: registerRoom.reducer,
 	searchSite: searchSite.reducer,
 	// room: room.reducer,
