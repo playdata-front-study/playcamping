@@ -16,9 +16,4 @@ const index: NextPage = () => {
 	);
 };
 
-index.getInitialProps = async ({ query }) => {
-	console.log(query);
-	return {};
-};
-
 export default index;

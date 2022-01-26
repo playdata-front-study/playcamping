@@ -1,19 +1,19 @@
-import App, { AppContext, AppProps } from "next/app";
-import axios from "../lib/api";
-import Header from "../components/Header";
-import GlobalStyle from "../styles/GlobalStyle";
-import { wrapper } from "../store";
-import { cookieStringToObject } from "../lib/utils";
-import { meAPI } from "../lib/api/auth";
-import { userActions } from "../store/user";
+import App, { AppContext, AppProps } from 'next/app';
+import axios from '../lib/api';
+import Header from '../components/Header';
+import GlobalStyle from '../styles/GlobalStyle';
+import { wrapper } from '../store';
+import { cookieStringToObject } from '../lib/utils';
+import { meAPI } from '../lib/api/auth';
+import { userActions } from '../store/user';
 
 const app = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
 			<GlobalStyle />
-			<Header/>
+			<Header />
 			<Component {...pageProps} />
-			<div id="root-modal"/>
+			<div id='root-modal' />
 		</>
 	);
 };
@@ -33,6 +33,7 @@ app.getInitialProps = async (context: AppContext) => {
   //   console.log(e);
   // }
   return { ...appInitialProps };
+
 };
 
 export default wrapper.withRedux(app);
