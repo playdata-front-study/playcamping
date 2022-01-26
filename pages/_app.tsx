@@ -22,7 +22,8 @@ app.getInitialProps = async (context: AppContext) => {
 	const appInitialProps = await App.getInitialProps(context);
 	// 	const cookieObject = cookieStringToObject(context.ctx.req?.headers.cookie);
 
-	// 	console.log(context);
+	console.log('_app.tsx');
+	console.log(context);
 	// const { store } = context.ctx;
 
 	// console.log('store????');

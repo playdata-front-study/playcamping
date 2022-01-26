@@ -75,6 +75,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 		}
 	}
 
+	//* 숙소 리스트 검색
 	if (req.method === 'GET') {
 		console.log('GET메서드 실행');
 		console.log(req.query);
@@ -90,52 +91,53 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
 		try {
 			const rooms = await Data.room.getList();
-			console.log(rooms);
 
-			const filteredRooms = rooms.filter((room) => {
-				if (latitude && latitude !== '0' && longitude && longitude !== '0') {
-					if (
-						!(
-							Number(latitude) - 0.5 < room.latitude &&
-							room.latitude < Number(latitude) + 0.05 &&
-							Number(longitude) - 0.5 < room.longitude &&
-							room.longitude < Number(longitude) + 0.05
-						)
-					) {
-						return false;
-					}
-				}
-				if (checkInDate) {
-					if (
-						new Date(checkInDate as string) < new Date(room.startDate) ||
-						new Date(checkInDate as string) > new Date(room.endDate)
-					) {
-						return false;
-					}
-				}
-				if (checkOutDate) {
-					if (
-						new Date(checkOutDate as string) < new Date(room.startDate) ||
-						new Date(checkOutDate as string) > new Date(room.endDate)
-					) {
-						return false;
-					}
-				}
+			// // 각 조건으로 검색
+			// const filteredRooms = rooms.filter((room) => {
+			// 	if (latitude && latitude !== '0' && longitude && longitude !== '0') {
+			// 		if (
+			// 			!(
+			// 				Number(latitude) - 0.5 < room.latitude &&
+			// 				room.latitude < Number(latitude) + 0.05 &&
+			// 				Number(longitude) - 0.5 < room.longitude &&
+			// 				room.longitude < Number(longitude) + 0.05
+			// 			)
+			// 		) {
+			// 			return false;
+			// 		}
+			// 	}
+			// 	if (checkInDate) {
+			// 		if (
+			// 			new Date(checkInDate as string) < new Date(room.startDate) ||
+			// 			new Date(checkInDate as string) > new Date(room.endDate)
+			// 		) {
+			// 			return false;
+			// 		}
+			// 	}
+			// 	if (checkOutDate) {
+			// 		if (
+			// 			new Date(checkOutDate as string) < new Date(room.startDate) ||
+			// 			new Date(checkOutDate as string) > new Date(room.endDate)
+			// 		) {
+			// 			return false;
+			// 		}
+			// 	}
 
-				// if (
-				// 	room.maximumGuestCount <
-				// 	Number(adultCount as string) +
-				// 		(Number(childrenCount as string) * 0.5 || 0)
-				// ) {
-				// 	return false;
-				// }
+			// if (
+			// 	room.maximumGuestCount <
+			// 	Number(adultCount as string) +
+			// 		(Number(childrenCount as string) * 0.5 || 0)
+			// ) {
+			// 	return false;
+			// }
 
-				return true;
-			});
+			// return true;
+			// });
 
 			//* host 정보 넣기
 			const roomsWithHost = await Promise.all(
-				filteredRooms.map(async (room) => {
+				// filteredRooms.map(async (room) => {
+				rooms.map(async (room) => {
 					const host = await Data.user.find({ id: room.hostId });
 					return { ...room, host };
 				})
