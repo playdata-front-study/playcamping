@@ -33,23 +33,23 @@ const HeaderUserProfile: React.FC = () => {
       }}
     >
       <button
-        className="header-user-profile"
-        type="button"
+        className='header-user-profile'
+        type='button'
         onClick={() => setIsUsermenuOpened(!isUsermenuOpened)}
       >
         <HamburgerIcon />
         <img
           src={userProfileImage}
-          className="header-user-profile-image"
-          alt=""
+          className='header-user-profile-image'
+          alt=''
         />
       </button>
       {isUsermenuOpened && (
-        <ul className="header-usermenu">
+        <ul className='header-usermenu'>
           <li>숙소 관리</li>
-          <Link href="/room/register/building">
+          <Link href='/room/register/guestcount'>
             <a
-              role="presentation"
+              role='presentation'
               onClick={() => {
                 setIsUsermenuOpened(false);
               }}
@@ -57,8 +57,8 @@ const HeaderUserProfile: React.FC = () => {
               <li>숙소 등록하기</li>
             </a>
           </Link>
-          <div className="header-usermenu-divider" />
-          <li role="presentation" onClick={logout}>
+          <div className='header-usermenu-divider' />
+          <li role='presentation' onClick={logout}>
             로그아웃
           </li>
         </ul>

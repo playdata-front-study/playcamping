@@ -22,8 +22,8 @@ const Container = styled.div`
     margin-bottom: 6px;
   }
   .register-room-geometry-map-wrapper {
-    width: 487px;
-    height: 280px;
+    width: 555px;
+    height: 300px;
     margin-top: 24px;
     > div {
       width: 100%;
@@ -52,7 +52,7 @@ const loadMapScript = () => {
 
 declare global {
   interface Window {
-    google: any; //이것도 책에 없었어...이자식...
+    google: any;
     initMap: () => void;
   }
 }
@@ -68,17 +68,22 @@ const RegisterRoomGeometry: React.FC = () => {
     await loadMapScript();
   };
 
+  /**
+   * Google Map API 주소의 callback 파라미터와 동일한 이름의 함수이다.
+   * Google Map API에서 콜백으로 실행시킨다.
+   */
   //dynamic 쓰면 된다더니... 난 안되서 if(typeof window !== 'undefined') 붙임
   if (typeof window !== "undefined") {
     window.initMap = () => {
       //*지도 불러오기
       if (mapRef.current) {
+        //지도
         const map = new window.google.maps.Map(mapRef.current, {
           center: {
             lat: latitude || 37.5666784,
             lng: longitude || 126.9778436,
           },
-          zoom: 14,
+          zoom: 15,
         });
         const marker = new window.google.maps.Marker({
           position: {
@@ -87,20 +92,59 @@ const RegisterRoomGeometry: React.FC = () => {
           },
           map,
         });
-        map.addListener(
-          "center_changed",
-          throttle(() => {
-            //지도 스크롤할 때마다 콘솔에 너무 많이 찍혀서
-            //스로틀링은 함수가 지정된 시간동안 최대 한번 호출되도록
-            const centerLat = map.getCenter().lat;
-            const centerLng = map.getCenter().lng;
-            console.log(centerLat, centerLng);
-            //마커의 위치를 바꾼후 redux에 저장하겠음
-            marker.setPosition({ lat: centerLat, lng: centerLng });
-            dispatch(registerRoomActions.setLatitude(centerLat));
-            dispatch(registerRoomActions.setLongitude(centerLng));
-          }, 150)
-        );
+        const getNewMarker = (location: any) => {
+          const newMarker = new window.google.maps.Marker({
+            position: location,
+            map: map,
+          });
+          map.setCenter(location);
+          // map.addListener("center_changed", () => {
+          //   window.setTimeout(() => {
+          //     map.panTo(newMarker.getPosition() as google.maps.LatLng);
+          //   }, 1000);
+          // });
+        };
+        map.addListener("center_changed", () => {
+          console.log(map.getCenter()); //왜 아무것도 뜨지 않는거야..?
+          const centerLat = map.getCenter().lat;
+          const centerLng = map.getCenter().lng;
+          // console.log(centerLat, centerLng);
+
+          marker.setPosition({ lat: centerLat, lng: centerLng });
+          dispatch(registerRoomActions.setLatitude(centerLat));
+          dispatch(registerRoomActions.setLongitude(centerLng));
+
+          window.setTimeout(() => {
+            map.panTo(marker.getPosition() as google.maps.LatLng);
+          }, 1000);
+        });
+        // marker.addListener("click", () => {
+        //   map.setCenter(marker.getPosition());
+        //   // getNewMarker(map.setCenter(marker.getPosition()));
+        // });
+        //마커
+        // if (location) {
+        //   const marker = new window.google.maps.Marker({
+        //     position: new google.maps.LatLng(location),
+        //     map,
+        //   });
+        // } else {
+        // }
+
+        // map.addListener(
+        //   "center_changed",
+        //   throttle(() => {
+        //     //지도 스크롤할 때마다 콘솔에 너무 많이 찍혀서
+        //     //스로틀링은 함수가 지정된 시간동안 최대 한번 호출되도록
+        //     const centerLat = map.getCenter().lat;
+        //     const centerLng = map.getCenter().lng;
+        //     console.log(centerLat, centerLng);
+        //     //마커의 위치를 바꾼후 redux에 저장하겠음
+        //     marker.setPosition({ lat: centerLat, lng: centerLng });
+        //     dispatch(registerRoomActions.setLatitude(centerLat));
+        //     dispatch(registerRoomActions.setLongitude(centerLng));
+        //   }, 150)
+        // );
       }
     };
   }
@@ -113,7 +157,7 @@ const RegisterRoomGeometry: React.FC = () => {
     <>
       <Container>
         <h2>📌핀이 놓인 위치가 정확한가요?</h2>
-        <h3>1.5단계</h3>
+        <h3>2.5단계</h3>
         <p>필요한 경우 핀이 정확한 위치에 자리하도록 조정할 수 있어요.</p>
         <div className='register-room-geometry-map-wrapper'>
           <div ref={mapRef} id='map' />
