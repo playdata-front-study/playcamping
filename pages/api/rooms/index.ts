@@ -37,7 +37,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         !city ||
         !district ||
         !streetAddress ||
-        !detailAddress ||
         !postcode ||
         !photos ||
         !title ||
@@ -75,7 +74,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.end();
     } catch (e) {
       console.log(e);
-      // return res.send(e.message);
+      return res.send(e.message);
     }
   }
 

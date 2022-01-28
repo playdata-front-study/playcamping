@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import styled from "styled-components";
 import { useSelector } from "../../../store";
-import throttle from "lodash/throttle";
 
 import palette from "../../../styles/palette";
 import { useDispatch } from "react-redux";
 import { registerRoomActions } from "../../../store/registerRoom";
 import RegisterRoomFooter from "./RegisterRoomFooter";
+import { getLocationInfoAPI } from "../../../lib/api/map";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -29,6 +29,10 @@ const Container = styled.div`
       width: 100%;
       height: 100%;
     }
+  }
+  .register-room-geometry-map-newpin {
+    color: ${palette.pink};
+    font-weight: bold;
   }
 `;
 
@@ -53,7 +57,7 @@ const loadMapScript = () => {
 declare global {
   interface Window {
     google: any;
-    initMap: () => void;
+    initMap: () => void; //아무것도 반환하지 않아..?
   }
 }
 
@@ -63,6 +67,33 @@ const RegisterRoomGeometry: React.FC = () => {
   const longitude = useSelector((state) => state.registerRoom.longitude);
 
   const dispatch = useDispatch();
+
+  const markers: Array<object> = [];
+
+  const [loading, setLoding] = useState(false);
+
+  //new 마커 찍기에 성공했을때
+  const onSuccessNewLocation = async (newLat: number, newLng: number) => {
+    try {
+      const { data: currentLocation } = await getLocationInfoAPI({
+        latitude: newLat,
+        longitude: newLng,
+      });
+      dispatch(registerRoomActions.setCountry(currentLocation.country));
+      dispatch(registerRoomActions.setCity(currentLocation.city));
+      dispatch(registerRoomActions.setDistrict(currentLocation.district));
+      dispatch(
+        registerRoomActions.setStreetAddress(currentLocation.streetAddress)
+      );
+      dispatch(registerRoomActions.setPostcode(currentLocation.postcode));
+      dispatch(registerRoomActions.setLatitude(currentLocation.latitude));
+      dispatch(registerRoomActions.setLongitude(currentLocation.longitude));
+      // console.log(currentLocation.city); //도시 잘 바뀌는거 확인
+    } catch (e) {
+      console.log(e);
+    }
+    setLoding(false);
+  };
 
   const loadMap = async () => {
     await loadMapScript();
@@ -77,7 +108,6 @@ const RegisterRoomGeometry: React.FC = () => {
     window.initMap = () => {
       //*지도 불러오기
       if (mapRef.current) {
-        //지도
         const map = new window.google.maps.Map(mapRef.current, {
           center: {
             lat: latitude || 37.5666784,
@@ -92,59 +122,27 @@ const RegisterRoomGeometry: React.FC = () => {
           },
           map,
         });
-        const getNewMarker = (location: any) => {
+        // console.log(typeof marker); //object
+        markers.push(marker);
+        console.log(latitude, longitude); //원래 찍혀있던 마커 37.5482093 127.179438
+
+        window.google.maps.event.addListener(map, "click", (e: any) => {
           const newMarker = new window.google.maps.Marker({
-            position: location,
-            map: map,
+            map,
+            position: new window.google.maps.LatLng(e.latLng), //그냥 e.latLng로 하면 안 되더라
           });
-          map.setCenter(location);
-          // map.addListener("center_changed", () => {
-          //   window.setTimeout(() => {
-          //     map.panTo(newMarker.getPosition() as google.maps.LatLng);
-          //   }, 1000);
-          // });
-        };
-        map.addListener("center_changed", () => {
-          console.log(map.getCenter()); //왜 아무것도 뜨지 않는거야..?
-          const centerLat = map.getCenter().lat;
-          const centerLng = map.getCenter().lng;
-          // console.log(centerLat, centerLng);
 
-          marker.setPosition({ lat: centerLat, lng: centerLng });
-          dispatch(registerRoomActions.setLatitude(centerLat));
-          dispatch(registerRoomActions.setLongitude(centerLng));
+          markers.push(newMarker); //새 마커를 markers 배열에 넣고,
+          markers.shift(); //배열의 첫번째 요소를 삭제
 
-          window.setTimeout(() => {
-            map.panTo(marker.getPosition() as google.maps.LatLng);
-          }, 1000);
+          map.setCenter(newMarker.getPosition()); // 부드럽게 이동하는건 안댐.....
+
+          const newLat = newMarker.getPosition().lat();
+          const newLng = newMarker.getPosition().lng();
+          console.log(newLat, newLng); //37.54661010607772 127.18362224606327 // 128라인이랑 다른거 확인
+
+          onSuccessNewLocation(newLat, newLng); //새 마커가 찍힌 곳으로 위치정보도 수정하기
         });
-        // marker.addListener("click", () => {
-        //   map.setCenter(marker.getPosition());
-        //   // getNewMarker(map.setCenter(marker.getPosition()));
-        // });
-        //마커
-        // if (location) {
-        //   const marker = new window.google.maps.Marker({
-        //     position: new google.maps.LatLng(location),
-        //     map,
-        //   });
-        // } else {
-        // }
-
-        // map.addListener(
-        //   "center_changed",
-        //   throttle(() => {
-        //     //지도 스크롤할 때마다 콘솔에 너무 많이 찍혀서
-        //     //스로틀링은 함수가 지정된 시간동안 최대 한번 호출되도록
-        //     const centerLat = map.getCenter().lat;
-        //     const centerLng = map.getCenter().lng;
-        //     console.log(centerLat, centerLng);
-        //     //마커의 위치를 바꾼후 redux에 저장하겠음
-        //     marker.setPosition({ lat: centerLat, lng: centerLng });
-        //     dispatch(registerRoomActions.setLatitude(centerLat));
-        //     dispatch(registerRoomActions.setLongitude(centerLng));
-        //   }, 150)
-        // );
       }
     };
   }
@@ -158,7 +156,11 @@ const RegisterRoomGeometry: React.FC = () => {
       <Container>
         <h2>📌핀이 놓인 위치가 정확한가요?</h2>
         <h3>2.5단계</h3>
-        <p>필요한 경우 핀이 정확한 위치에 자리하도록 조정할 수 있어요.</p>
+        <p>
+          필요한 경우 핀이 정확한 위치에 자리하도록 지도에{" "}
+          <span className='register-room-geometry-map-newpin'>새 핀</span>을
+          꽂아주세요.🎯🎯
+        </p>
         <div className='register-room-geometry-map-wrapper'>
           <div ref={mapRef} id='map' />
         </div>
