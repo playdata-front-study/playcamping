@@ -7,10 +7,10 @@ import { makeQueryString } from '../../../lib/utils';
 
 const SearchButton: React.FC = () => {
 	const searchRoom = useSelector((state) => state.searchRoom);
-	const siteListHref = makeQueryString('/room', searchRoom);
+	const roomListHref = makeQueryString('/room', searchRoom);
 
 	return (
-		<Link href={siteListHref}>
+		<Link href={roomListHref}>
 			<a>
 				<Button icon={<SearchIcon />} color='cyan' width='89px'>
 					검색

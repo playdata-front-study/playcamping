@@ -40,7 +40,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
 				longitude,
 				location,
 			});
-
+			console.log('pages/room/index 검색된rooms????');
+			console.log(data);
 			store.dispatch(roomActions.setRooms(data));
 		} catch (e) {
 			console.log(e);
