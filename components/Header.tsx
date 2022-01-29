@@ -79,12 +79,10 @@ const Container = styled.div`
       border-radius: 50%;
     }
   }
-
   /** react-ouside-click-handler div */
   .header-logo-wrapper + div {
     position: relative;
   }
-
   .header-usermenu {
     position: absolute;
     right: 0;
