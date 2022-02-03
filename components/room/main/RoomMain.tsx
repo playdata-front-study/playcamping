@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 import MapIcon from '../../../public/static/svg/room/main/map.svg';
 import palette from '../../../styles/palette';
 import { useSelector } from '../../../store';
 import RoomList from './RoomList';
+import dynamic from 'next/dynamic';
 
 const Container = styled.div<{ showMap: boolean }>`
 	padding: 50px 80px;
@@ -89,6 +89,9 @@ const RoomMain: React.FC = () => {
 	} 
   `;
 
+	const RoomListMap = dynamic(() => import('./RoomListMap'), { ssr: false });
+	// next의 dynamic : 모듈을 빌드 타임이 아닌 런타임에 불러오도록 함. 초기 로딩부터 사용하지 않는 부분을 분리함으로써 퍼포먼스 향상
+
 	return (
 		<Container showMap={showMap}>
 			<p className='room-list-info'>{getRoomListInfo}</p>
@@ -110,7 +113,8 @@ const RoomMain: React.FC = () => {
 				)}
 			</div>
 			<div className='room-list-wrapper'>
-				<RoomList />
+				<RoomList showMap={showMap} />
+				{showMap && <RoomListMap showMap={showMap} setShowMap={setShowMap} />}
 			</div>
 		</Container>
 	);

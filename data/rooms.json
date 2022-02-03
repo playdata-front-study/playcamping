@@ -1,1 +1,37 @@
-[{"id":1,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"서울특별시","district":"강동구","streetAddress":"상일동상일로","detailAddress":"","postcode":"134-090","amentities":[],"conveniences":[],"photos":[],"description":"","title":"ㅎㅎㅎ","price":3000000,"startDate":"2022-01-23T00:00:00.000Z","endDate":"2022-01-31T00:00:00.000Z","createdAt":"2022-01-23T05:17:33.773Z","updateAt":"2022-01-23T05:17:33.773Z"},{"id":2,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"서울특별시","district":"강동구","streetAddress":"상일동상일로","detailAddress":"","postcode":"134-090","amentities":[],"conveniences":[],"photos":[],"description":"","title":"ㅎㅎㅎ222","price":3000000,"startDate":"2022-01-23T00:00:00.000Z","endDate":"2022-01-31T00:00:00.000Z","createdAt":"2022-01-23T05:20:32.715Z","updateAt":"2022-01-23T05:20:32.715Z"},{"id":3,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"서울특별시","district":"강동구","streetAddress":"상일동상일로","detailAddress":"","postcode":"134-090","amentities":[],"conveniences":[],"photos":[],"description":"","title":"ㅎㅎㅎ222","price":3000000,"startDate":"2022-01-23T00:00:00.000Z","endDate":"2022-01-31T00:00:00.000Z","createdAt":"2022-01-23T05:24:22.406Z","updateAt":"2022-01-23T05:24:22.406Z"},{"id":4,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일로","detailAddress":"","postcode":"415-67","amentities":[],"conveniences":[],"photos":[],"description":"","title":"제목444","price":4000000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-23T05:25:35.247Z","updateAt":"2022-01-23T05:25:35.247Z"},{"id":5,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일동２−９","detailAddress":"","postcode":"465-210","latitude":37.5482093,"longitude":127.179438,"amentities":[],"conveniences":[],"photos":[],"description":"","title":"제목111","price":300000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-24T09:47:57.964Z","updateAt":"2022-01-24T09:47:57.964Z"},{"id":6,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일동２−９","detailAddress":"","postcode":"465-210","latitude":37.5482093,"longitude":127.179438,"amentities":[],"conveniences":[],"photos":[],"description":"","title":"제목222","price":300000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-24T09:55:57.370Z","updateAt":"2022-01-24T09:55:57.370Z"},{"id":7,"largeBuildingType":null,"buildingType":null,"roomType":null,"isSetUpForGuest":null,"maximumGuestCount":1,"bedroomCount":0,"bedCount":1,"bedList":[],"publicBedList":[],"bathroomCount":1,"bathroomType":null,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일동２−９","detailAddress":"","postcode":"465-210","latitude":37.5482093,"longitude":127.179438,"amentities":[],"conveniences":[],"photos":[],"description":"","title":"제목222","price":300000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-24T09:57:55.203Z","updateAt":"2022-01-24T09:57:55.203Z"},{"id":8,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일동２−９","detailAddress":"","postcode":"465-210","latitude":37.5482093,"longitude":127.179438,"photos":[],"title":"캠핑장","price":50000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-24T10:58:08.651Z","updateAt":"2022-01-24T10:58:08.651Z"},{"id":9,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일동２−９","detailAddress":"","postcode":"465-210","latitude":37.5482093,"longitude":127.179438,"photos":[],"title":"캠핑장","price":50000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-24T11:27:13.342Z","updateAt":"2022-01-24T11:27:13.342Z"},{"id":10,"country":"대한민국","city":"경기도","district":"하남시","streetAddress":"초일로４０１−１９","detailAddress":"","postcode":"465-210","photos":[],"title":"제목","price":500000,"startDate":"2022-01-24T00:00:00.000Z","endDate":"2022-01-29T00:00:00.000Z","createdAt":"2022-01-24T13:10:49.731Z","updateAt":"2022-01-24T13:10:49.731Z"}]
+[
+	{
+		"id": 1,
+		"country": "대한민국",
+		"city": "서울특별시",
+		"district": "강서구",
+		"streetAddress": "등촌로39가길１５−６",
+		"detailAddress": "",
+		"postcode": "157-032",
+		"photos": [],
+		"title": "새로운캠핑장",
+		"price": 11101,
+		"startDate": "2022-01-25T15:00:00.000Z",
+		"endDate": "2022-03-30T15:00:00.000Z",
+		"maximumGuestCount": 4,
+		"createdAt": "2022-01-26T14:25:49.920Z",
+		"updateAt": "2022-01-26T14:25:49.920Z"
+	},
+	{
+		"id": 2,
+		"country": "대한민국",
+		"city": "대구광역시",
+		"district": "북구",
+		"streetAddress": "산격동１３８４−３",
+		"detailAddress": "",
+		"postcode": "702-014",
+		"latitude": 35.888864,
+		"longitude": 128.6010489,
+		"photos": [],
+		"title": "로그인성공",
+		"price": 50000,
+		"startDate": "2022-01-28T15:00:00.000Z",
+		"endDate": "2022-04-29T15:00:00.000Z",
+		"createdAt": "2022-01-29T07:16:41.846Z",
+		"updateAt": "2022-01-29T07:16:41.846Z"
+	}
+]
