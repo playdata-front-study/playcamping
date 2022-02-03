@@ -14,7 +14,7 @@ const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 548px;
+  width: 90%;
   height: 82px;
   padding: 14px 30px 20px;
   background-color: white;
@@ -33,7 +33,7 @@ const Container = styled.footer`
 `;
 
 const RegisterRoomSubmitFooter: React.FC = () => {
-  // const useId = useSelector((state) => state.user.id);
+  const userId = useSelector((state) => state.user.id);
   const registerRoom = useSelector((state) => state.registerRoom);
 
   const router = useRouter();
@@ -42,7 +42,7 @@ const RegisterRoomSubmitFooter: React.FC = () => {
   const onClickregisterRoom = async () => {
     const registerRoomBody = {
       ...registerRoom,
-      // hostId: userId
+      hostId: userId,
     };
     try {
       await registerRoomAPI(registerRoomBody);

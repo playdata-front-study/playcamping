@@ -123,7 +123,7 @@ const RegisterRoomLocation: React.FC = () => {
   return (
     <Container>
       <h2>🏕️캠핑장의 위치를 알려주세요.</h2>
-      <h3>1단계</h3>
+      <h3>2단계</h3>
       <p className='register-room-step-info'>
         정확한 캠핑장 주소는 게스트가 예약을 완료한 후에만 공개됩니다.
       </p>
@@ -173,7 +173,7 @@ const RegisterRoomLocation: React.FC = () => {
       <RegisterRoomChecklist />
       <RegisterRoomFooter
         isValid={false}
-        prevHref='/'
+        prevHref='/room/register/guestcount'
         nextHref='/room/register/geometry'
       />
     </Container>

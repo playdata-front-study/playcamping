@@ -11,6 +11,7 @@ import palette from "../../../styles/palette";
 const Container = styled.div`
   display: inline-block;
   padding: 16px 0;
+
   a {
     display: flex;
     align-items: center;
@@ -24,6 +25,9 @@ const Container = styled.div`
       font-weight: 600;
       text-decoration: underline;
     }
+  }
+  &:link {
+    text-decoration-line: none;
   }
   .register-room-check-step-in-progress {
     //아직 진행중인 단계

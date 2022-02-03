@@ -5,6 +5,8 @@ import { RegisterRoomState } from "../types/reduxState";
 
 //* 초기 상태
 const initialState: RegisterRoomState = {
+  //* 인원수
+  maximumGuestCount: 1,
   //* 국가/지역
   country: "",
   //* 시/도
@@ -37,6 +39,11 @@ const registerRoom = createSlice({
   name: "registerRoom",
   initialState,
   reducers: {
+    //* 최대 인원수 변경하기
+    setMaximumGuestCount(state, action: PayloadAction<number>) {
+      state.maximumGuestCount = action.payload;
+      return state; //state를 return ???
+    },
     //* 국가 변경하기
     setCountry(state, action: PayloadAction<string>) {
       state.country = action.payload;

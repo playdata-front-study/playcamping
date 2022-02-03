@@ -1,16 +1,23 @@
 import { isEmpty } from "lodash";
 import React, { useMemo } from "react";
 import styled from "styled-components";
+import palette from "../../../styles/palette";
 import { useSelector } from "../../../store";
 import RegisterRoomCheckStep from "./RegisterRoomCheckStep";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 import RegisterRoomSubmitFooter from "./RegisterRoomSubmitFooter";
+import Image from "next/image";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
-  min-height: 100vh;
+  min-height: 60vh;
   .register-room-checklist-info {
     margin-bottom: 39px;
+    background: url(http://fiximage.10x10.co.kr/web2018/main/bg_pattern_line.png)
+      0 100% repeat-x;
+    font-size: larger;
+    font-weight: 800;
+    font-style: italic;
   }
   ul {
     display: inline-flex;
@@ -22,6 +29,15 @@ const RegisterRoomChecklist: React.FC = () => {
   //이 페이지에서는 리렌더가 발생하는 일이 없도록 만들 예정이기 때문에..?
   //사ㅣ용하기 쉽도록 객체로 불러오도록 했다..?
   const registerRoom = useSelector((state) => state.registerRoom); //registerRoom 객체를 다 가져옴
+
+  //* 최대 인원수가 활성화됐는지
+  const isMaximumGuestCountActived = useMemo(() => {
+    const { maximumGuestCount } = registerRoom;
+    if (!maximumGuestCount) {
+      return false;
+    }
+    return true;
+  }, []);
 
   //* 위치 항목이 활성화됐는지
   const isLocationActived = useMemo(() => {
@@ -89,6 +105,9 @@ const RegisterRoomChecklist: React.FC = () => {
 
   //*진행중인 단계
   const stepInProgress = useMemo(() => {
+    if (!isMaximumGuestCountActived) {
+      return "guestcount";
+    }
     if (!isLocationActived) {
       return "location";
     }
@@ -109,42 +128,51 @@ const RegisterRoomChecklist: React.FC = () => {
 
   return (
     <Container>
-      <p className='register-room-checklist-info'>
-        캠핑장을 등록한 후 언제든 숙소를 수정할 수 있습니다.
-      </p>
+      <p className='register-room-checklist-info'>Check List!</p>
       <ul>
         <RegisterRoomCheckStep
-          step='위치'
+          step='👪 최대 인원 수'
+          href='/room/register/guestcount'
+          disabled={!isMaximumGuestCountActived}
+          inProgress={stepInProgress === "guestcount"}
+        />
+        <RegisterRoomCheckStep
+          step='🏕️ 위치'
           href='/room/register/location'
           disabled={!isLocationActived}
           inProgress={stepInProgress === "location"}
         />
         <RegisterRoomCheckStep
-          step='사진'
+          step='📸 사진'
           href='/room/register/photo'
           disabled={!isPhotoActived}
           inProgress={stepInProgress === "photo"}
         />
         <RegisterRoomCheckStep
-          step='제목'
+          step='✨ 제목'
           href='/room/register/title'
           disabled={!isTitleActived}
           inProgress={stepInProgress === "title"}
         />
         <RegisterRoomCheckStep
-          step='요금'
+          step='💸 요금'
           href='/room/register/price'
           disabled={!isPriceActived}
           inProgress={stepInProgress === "price"}
         />
         <RegisterRoomCheckStep
-          step='예약 날짜'
+          step='📆 예약 날짜'
           href='/room/register/date'
           disabled={!isDateActived}
           inProgress={stepInProgress === "date"}
         />
       </ul>
-      {isDateActived ? (
+      {isMaximumGuestCountActived &&
+      isLocationActived &&
+      isPhotoActived &&
+      isTitleActived &&
+      isPriceActived &&
+      isDateActived ? (
         <RegisterRoomSubmitFooter />
       ) : (
         <RegisterRoomFooter
