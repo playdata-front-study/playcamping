@@ -22,24 +22,26 @@ const index: NextPage = () => {
 };
 
 // 로그인 유지하기 - 모든 컴포넌트에서 로그인한 유저 정보 받아올 수 있도록 리덕스 스토어에 저장하기
-export const getServerSideProps = wrapper.getServerSideProps(
-	(store) => async (ctx) => {
-		const cookieObject = cookieStringToObject(ctx.req?.headers.cookie);
-		const { isLogged } = store.getState().user;
-		console.log(cookieObject);
-		console.log(isLogged);
+// 이렇게하면안됨 ㅠㅠ
+// export const getServerSideProps = wrapper.getServerSideProps(
+// 	(store) => async (ctx) => {
+// 		console.log('index 의 getServerSideProps');
+// 		const cookieObject = cookieStringToObject(ctx.req?.headers.cookie);
+// 		const { isLogged } = store.getState().user;
+// 		console.log(cookieObject);
+// 		console.log(isLogged);
 
-		try {
-			if (!isLogged && cookieObject.access_token) {
-				axios.defaults.headers.cookie = cookieObject.access_token;
-				const { data } = await meAPI();
-				store.dispatch(userActions.setLoggedUser(data));
-			}
-		} catch (e) {
-			console.log(e);
-		}
-		return {};
-	}
-);
+// 		try {
+// 			if (!isLogged && cookieObject.access_token) {
+// 				axios.defaults.headers.cookie = cookieObject.access_token;
+// 				const { data } = await meAPI();
+// 				store.dispatch(userActions.setLoggedUser(data));
+// 			}
+// 		} catch (e) {
+// 			console.log(e);
+// 		}
+// 		return {};
+// 	}
+// );
 
 export default index;

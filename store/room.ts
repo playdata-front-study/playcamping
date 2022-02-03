@@ -14,12 +14,10 @@ const room = createSlice({
 	reducers: {
 		setRooms(state, action: PayloadAction<RoomType[]>) {
 			console.log('setroom dispatch 실행');
-			console.log(action.payload);
 			state.rooms = action.payload;
 		},
 		setDetailRoom(state, action: PayloadAction<RoomType>) {
 			console.log('setDetailRoom dispatch 실행');
-			console.log(action.payload);
 			state.detail = action.payload;
 		},
 	},

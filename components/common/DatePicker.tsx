@@ -6,6 +6,9 @@ import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker';
 const Container = styled.div`
 	width: 100%;
 	height: 100%;
+	.react-datepicker-popper {
+		z-index: 9999;
+	}
 	.react-datepicker {
 		padding: 16px 32px;
 		background-color: white;
@@ -27,26 +30,40 @@ const Container = styled.div`
 		background-color: white;
 	}
 	.react-datepicker__navigation--previous {
+		height: 20px;
+		position: absolute;
 		top: 40px;
 		left: 56px;
 		border: 0;
 		background-image: url('/static/svg/common/datePicker/datepicker_left_arrow.svg');
 		background-repeat: no-repeat;
+		background-color: transparent;
+		span {
+			display: none;
+		}
 	}
 	.react-datepicker__navigation--next {
+		height: 20px;
+		position: absolute;
 		top: 40px;
 		right: 56px;
 		border: 0;
 		background-image: url('/static/svg/common/datePicker/datepciker_right_arrow.svg');
 		background-repeat: no-repeat;
+		background-color: transparent;
+		span {
+			display: none;
+		}
 	}
 	.react-datepicker__current-month {
 		font-size: 16px;
 		font-weight: 600;
 		font-family: Airbnb Cereal, sans-serif;
+		text-align: center;
 	}
 	.react-datepicker__day-names {
 		padding-top: 16px;
+		display: flex;
 	}
 	.react-datepicker__day-name {
 		width: 48px;
@@ -54,6 +71,7 @@ const Container = styled.div`
 		font-size: 12px;
 		line-height: 16px;
 		font-weight: 400;
+		text-align: center;
 		color: ${palette.gray};
 	}
 	.react-datepicker__month {
@@ -77,7 +95,6 @@ const Container = styled.div`
 		outline: none;
 		&:hover {
 			border: 1px solid ${palette.black};
-			color: ${palette.black};
 			background-color: white;
 			border-radius: 50%;
 		}
@@ -111,10 +128,10 @@ const Container = styled.div`
 			border: 0;
 		}
 	}
-	.react-datepicker__day--outside-month {
+	/* .react-datepicker__day--outside-month {
 		background-color: transparent;
 		pointer-events: none;
-	}
+	} */
 `;
 
 const DatePicker: React.FC<ReactDatePickerProps> = ({ ...props }) => {

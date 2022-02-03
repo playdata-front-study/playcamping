@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import room from '../../../lib/data/room';
 import { useSelector } from '../../../store';
 import palette from '../../../styles/palette';
+import RoomDetailReservation from './RoomDetailReservation';
 
 const Container = styled.div`
 	width: 1120px;
@@ -103,6 +104,7 @@ const RoomDetail = () => {
 			<p className='room-detail-location'>
 				{room.city}, {room.district}
 			</p>
+			<RoomDetailReservation />
 		</Container>
 	);
 };
