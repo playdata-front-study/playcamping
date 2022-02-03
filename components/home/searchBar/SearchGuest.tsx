@@ -111,7 +111,7 @@ const SearchGuest: React.FC = () => {
 						<div className='search-bar-guests-counter-wrapper'>
 							<Counter
 								label='어린이'
-								description='12세 이하'
+								description='만 12세 이하'
 								value={childrenCount}
 								onChange={(count) => setChildrenCountDispatch(count)}
 							/>

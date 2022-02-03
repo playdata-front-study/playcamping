@@ -42,5 +42,6 @@ export type SearchRoomState = {
 
 //* 숙소 redux state
 export type RoomState = {
-  rooms: RoomType[];
+	rooms: RoomType[];
+	detail: RoomType | null;
 };

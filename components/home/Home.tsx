@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import RegisterLocation from '../../pages/room/register/RegisterLocation';
-import SearchBar from './searchBar/searchBar';
+import SearchBar from './searchBar/SearchBar';
 
 const Container = styled.div`
 	width: 100%;
