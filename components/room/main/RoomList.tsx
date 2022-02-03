@@ -10,13 +10,17 @@ const Container = styled.ul`
 	width: 100%;
 `;
 
-const RoomList: React.FC = () => {
+interface Iprops {
+	showMap: boolean;
+}
+
+const RoomList: React.FC<Iprops> = ({ showMap }) => {
 	const rooms = useSelector((state) => state.room.rooms);
 
 	return (
 		<Container>
 			{rooms.map((room) => (
-				<RoomCard room={room} showMap={false} key={room.id} />
+				<RoomCard room={room} showMap={showMap} key={room.id} />
 			))}
 		</Container>
 	);

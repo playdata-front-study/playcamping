@@ -77,7 +77,7 @@ const RegisterRoomDate: React.FC = () => {
   return (
     <Container>
       <h2>📆예약 가능 여부 설정하기</h2>
-      <h3>5단계</h3>
+      <h3>6단계</h3>
       <div className='register-room-date-wrapper'>
         <div className='register-room-start-date'>
           <label>

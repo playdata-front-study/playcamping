@@ -28,6 +28,7 @@ const Container = styled.div`
 		button {
 			width: 32px;
 			height: 32px;
+			padding: 0;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -37,7 +38,6 @@ const Container = styled.div`
 			background-color: white;
 			outline: none;
 			cursor: pointer;
-			font-size: 21px;
 			&:disabled {
 				opacity: 0.3;
 				cursor: not-allowed;

@@ -15,6 +15,7 @@ const index: NextPage = () => {
  */
 export const getServerSideProps = wrapper.getServerSideProps(
 	(store) => async () => {
+		console.log('room/index 의 getServerSideProps');
 		// console.log('room/index.tsx  context???');
 		// console.log(store);
 		// console.log(store.getState());
@@ -40,8 +41,6 @@ export const getServerSideProps = wrapper.getServerSideProps(
 				longitude,
 				location,
 			});
-			console.log('pages/room/index 검색된rooms????');
-			console.log(data);
 			store.dispatch(roomActions.setRooms(data));
 		} catch (e) {
 			console.log(e);
