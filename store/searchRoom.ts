@@ -15,37 +15,36 @@ const searchRoom = createSlice({
 	name: 'searchRoom',
 	initialState,
 	reducers: {
-		// 유저 변경하기
 		setLocation(state, action: PayloadAction<string>) {
 			state.location = action.payload;
 			return state;
 		},
-		// 체크인 날짜 변경하기
 		setStartDate(state, action: PayloadAction<string | null>) {
+			console.log('체크인날짜 dispatch 실행');
 			state.checkInDate = action.payload;
 			return state;
 		},
-		// 체크아웃 날짜 변경하기
 		setEndDate(state, action: PayloadAction<string | null>) {
+			console.log('체크아웃날짜 dispatch 실행');
 			state.checkOutDate = action.payload;
 			return state;
 		},
-		// 성인 수 변경하기
 		setAdultCount(state, action: PayloadAction<number>) {
+			console.log('어른수 dispatch 실행');
 			state.adultCount = action.payload;
 			return state;
 		},
-		// 어린이 수 변경하기
 		setChildrenCount(state, action: PayloadAction<number>) {
+			console.log('아이수 dispatch 실행');
 			state.childrenCount = action.payload;
 			return state;
 		},
-		// 위도 변경하기
 		setLatitude(state, action: PayloadAction<number>) {
+			console.log('위도변경 dispatch 실행');
 			state.latitude = action.payload;
 		},
-		// 경도 변경하기
 		setLongitude(state, action: PayloadAction<number>) {
+			console.log('경도변경 dispatch 실행');
 			state.longitude = action.payload;
 		},
 	},
