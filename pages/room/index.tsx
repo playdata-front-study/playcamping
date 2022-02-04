@@ -16,10 +16,10 @@ const index: NextPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
 	(store) => async () => {
 		console.log('room/index 의 getServerSideProps');
-		// console.log('room/index.tsx  context???');
-		// console.log(store);
-		// console.log(store.getState());
-		// console.log(store.getState().searchRoom);
+// 		// console.log('room/index.tsx  context???');
+// 		// console.log(store);
+// 		// console.log(store.getState());
+// 		// console.log(store.getState().searchRoom);
 
 		const {
 			location,
