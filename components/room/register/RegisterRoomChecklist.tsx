@@ -30,6 +30,24 @@ const RegisterRoomChecklist: React.FC = () => {
   //사ㅣ용하기 쉽도록 객체로 불러오도록 했다..?
   const registerRoom = useSelector((state) => state.registerRoom); //registerRoom 객체를 다 가져옴
 
+  //* 캠핑장 종류가 활성화됐는지
+  const isCampingTypeActived = useMemo(() => {
+    const { campingType } = registerRoom;
+    if (!campingType) {
+      return false;
+    }
+    return true;
+  }, []);
+
+  //* 편의 시설이 활성화됐는지
+  const isAmenitiesActived = useMemo(() => {
+    const { amenities } = registerRoom;
+    if (isEmpty(amenities)) {
+      return false;
+    }
+    return true;
+  }, []);
+
   //* 최대 인원수가 활성화됐는지
   const isMaximumGuestCountActived = useMemo(() => {
     const { maximumGuestCount } = registerRoom;
@@ -41,20 +59,11 @@ const RegisterRoomChecklist: React.FC = () => {
 
   //* 위치 항목이 활성화됐는지
   const isLocationActived = useMemo(() => {
-    const {
-      latitude,
-      longitude,
-      country,
-      city,
-      district,
-      streetAddress,
-      detailAddress,
-      postcode,
-    } = registerRoom;
+    const { latitude, longitude, city, district, streetAddress, postcode } =
+      registerRoom;
     if (
       !latitude ||
       !longitude ||
-      !country ||
       !city ||
       !district ||
       !streetAddress ||
@@ -84,6 +93,15 @@ const RegisterRoomChecklist: React.FC = () => {
     return true;
   }, []);
 
+  //* 숙소 설명이 다 채워져 있는지
+  const isDescriptionActived = useMemo(() => {
+    const { description } = registerRoom;
+    if (!description) {
+      return false;
+    }
+    return true;
+  }, []);
+
   //* 숙소 금액이 채워져 있는지
   const isPriceActived = useMemo(() => {
     const { price } = registerRoom;
@@ -105,6 +123,12 @@ const RegisterRoomChecklist: React.FC = () => {
 
   //*진행중인 단계
   const stepInProgress = useMemo(() => {
+    if (!isCampingTypeActived) {
+      return "campingtype";
+    }
+    if (!isAmenitiesActived) {
+      return "amenities";
+    }
     if (!isMaximumGuestCountActived) {
       return "guestcount";
     }
@@ -117,6 +141,9 @@ const RegisterRoomChecklist: React.FC = () => {
     if (!isTitleActived) {
       return "title";
     }
+    if (!isDescriptionActived) {
+      return "description";
+    }
     if (!isPriceActived) {
       return "price";
     }
@@ -128,46 +155,67 @@ const RegisterRoomChecklist: React.FC = () => {
 
   return (
     <Container>
-      <p className='register-room-checklist-info'>Check List!</p>
+      <p className="register-room-checklist-info">Check List!</p>
       <ul>
         <RegisterRoomCheckStep
-          step='👪 최대 인원 수'
-          href='/room/register/guestcount'
+          step="🏕️ 캠핑장 종류"
+          href="/room/register/campingtype"
+          disabled={!isCampingTypeActived}
+          inProgress={stepInProgress === "campingtype"}
+        />
+        <RegisterRoomCheckStep
+          step="🚿 편의 시설"
+          href="/room/register/amenities"
+          disabled={!isAmenitiesActived}
+          inProgress={stepInProgress === "amenities"}
+        />
+        <RegisterRoomCheckStep
+          step="👪 최대 인원 수"
+          href="/room/register/guestcount"
           disabled={!isMaximumGuestCountActived}
           inProgress={stepInProgress === "guestcount"}
         />
         <RegisterRoomCheckStep
-          step='🏕️ 위치'
-          href='/room/register/location'
+          step="🏕️ 위치"
+          href="/room/register/location"
           disabled={!isLocationActived}
           inProgress={stepInProgress === "location"}
         />
         <RegisterRoomCheckStep
-          step='📸 사진'
-          href='/room/register/photo'
+          step="📸 사진"
+          href="/room/register/photo"
           disabled={!isPhotoActived}
           inProgress={stepInProgress === "photo"}
         />
         <RegisterRoomCheckStep
-          step='✨ 제목'
-          href='/room/register/title'
+          step="✨ 제목"
+          href="/room/register/title"
           disabled={!isTitleActived}
           inProgress={stepInProgress === "title"}
         />
         <RegisterRoomCheckStep
-          step='💸 요금'
-          href='/room/register/price'
+          step="💬 숙소 설명"
+          href="/room/register/description"
+          disabled={!isDescriptionActived}
+          inProgress={stepInProgress === "description"}
+        />
+        <RegisterRoomCheckStep
+          step="💸 요금"
+          href="/room/register/price"
           disabled={!isPriceActived}
           inProgress={stepInProgress === "price"}
         />
         <RegisterRoomCheckStep
-          step='📆 예약 날짜'
-          href='/room/register/date'
+          step="📆 예약 날짜"
+          href="/room/register/date"
           disabled={!isDateActived}
           inProgress={stepInProgress === "date"}
         />
       </ul>
-      {isMaximumGuestCountActived &&
+      {isCampingTypeActived &&
+      isAmenitiesActived &&
+      isDescriptionActived &&
+      isMaximumGuestCountActived &&
       isLocationActived &&
       isPhotoActived &&
       isTitleActived &&
@@ -176,7 +224,7 @@ const RegisterRoomChecklist: React.FC = () => {
         <RegisterRoomSubmitFooter />
       ) : (
         <RegisterRoomFooter
-          prevHref='/room/register/date'
+          prevHref="/room/register/date"
           nextHref={`/room/register/${stepInProgress}`}
         />
       )}

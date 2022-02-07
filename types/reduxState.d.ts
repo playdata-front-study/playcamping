@@ -14,20 +14,23 @@ export type UserState = UserType & {
 
 //* 숙소 등록하기 redux state
 export type RegisterRoomState = {
-	maximumGuestCount: number;
-	country: string;
-	city: string;
-	district: string;
-	streetAddress: string;
-	detailAddress: string;
-	postcode: string;
-	latitude: number;
-	longitude: number;
-	photos: string[];
-	title: string;
-	price: number;
-	startDate: string | null;
-	endDate: string | null;
+  campingType: string | null;
+  amenities: string[];
+  maximumGuestCount: number;
+  country: string;
+  city: string;
+  district: string;
+  streetAddress: string;
+  detailAddress: string;
+  postcode: string;
+  latitude: number;
+  longitude: number;
+  photos: string[];
+  title: string;
+  description: string;
+  price: number;
+  startDate: string | null;
+  endDate: string | null;
 };
 
 //* 숙소 검색 redux state
@@ -43,8 +46,8 @@ export type SearchRoomState = {
 
 //* 숙소 redux state
 export type RoomState = {
-	rooms: RoomType[];
-	detail: RoomType | null;
+  rooms: RoomType[];
+  detail: RoomType | null;
 };
 
 //* 숙소 예약 상태

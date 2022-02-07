@@ -39,19 +39,19 @@ const RegisterRoomTitle: React.FC = () => {
 
   return (
     <Container>
-      <h2>✨캠핑장의 제목을 만드세요.</h2>
+      <h2>✨ 캠핑장의 제목을 만드세요.</h2>
       <h3>4단계</h3>
-      <div className='register-room-descript-wrapper'>
+      <div className="register-room-descript-wrapper">
         <Input
-          label='캠핑장의 특징과 장점을 강조하는 제목으로 게스트의 관심을 끌어보세요.'
+          label="캠핑장의 특징과 장점을 강조하는 제목으로 게스트의 관심을 끌어보세요."
           value={title}
           onChange={onChangeTitle}
         />
       </div>
       <RegisterRoomChecklist />
       <RegisterRoomFooter
-        prevHref='/room/register/photo'
-        nextHref='/room/register/price'
+        prevHref="/room/register/photo"
+        nextHref="/room/register/description"
       />
     </Container>
   );

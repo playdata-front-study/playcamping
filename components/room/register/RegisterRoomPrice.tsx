@@ -52,17 +52,17 @@ const RegisterRoomPrice: React.FC = () => {
   // ? 왜 string으로 value를 받는거지???
   return (
     <Container>
-      <h2>💸캠핑장 요금 설정하기</h2>
+      <h2>💸 캠핑장 요금 설정하기</h2>
       <h3>5단계</h3>
       <Input
-        label='기본요금'
+        label="기본요금"
         value={makeMoneyString(String(price))}
         onChange={onChangePrice}
       />
       <RegisterRoomChecklist />
       <RegisterRoomFooter
-        prevHref='/room/register/title'
-        nextHref='/room/register/date'
+        prevHref="/room/register/description"
+        nextHref="/room/register/date"
       />
     </Container>
   );

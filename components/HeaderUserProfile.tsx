@@ -60,10 +60,10 @@ const HeaderUserProfile: React.FC = () => {
                 setIsUsermenuOpened(false);
               }}
             >
-              <li>숙소 관리</li>
+              <li>캠핑장 관리</li>
             </a>
           </Link>
-					<Link href='/room/register/guestcount'>
+					<Link href='/room/register/campingtype'>
 						<a
 							role='presentation'
 							onClick={() => {
