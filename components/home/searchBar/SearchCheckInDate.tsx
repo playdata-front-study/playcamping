@@ -13,7 +13,7 @@ const Container = styled.div`
 	border-radius: 12px;
 	cursor: pointer;
 	&:hover {
-		border-color: ${palette.gray};
+		border-color: ${palette.lightgray};
 	}
 
 	.search-bar-date-label {

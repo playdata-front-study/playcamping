@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import room from '../../../lib/data/room';
 import { useSelector } from '../../../store';
 import palette from '../../../styles/palette';
+import RoomDetailPhotos from './RoomDetailPhotos';
 import RoomDetailReservation from './RoomDetailReservation';
 
 const Container = styled.div`
@@ -104,6 +105,7 @@ const RoomDetail = () => {
 			<p className='room-detail-location'>
 				{room.city}, {room.district}
 			</p>
+			<RoomDetailPhotos />
 			<RoomDetailReservation />
 		</Container>
 	);
