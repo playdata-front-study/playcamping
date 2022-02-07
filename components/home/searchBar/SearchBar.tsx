@@ -13,6 +13,7 @@ const Container = styled.div`
 	align-items: center;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
 	border-radius: 12px;
+	margin-top: 20px;
 
 	.search-bar-inputs {
 		display: flex;

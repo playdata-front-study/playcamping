@@ -21,25 +21,24 @@ export type StoredRoomType = {
 	hostId: number;
 };
 
-//* 숙소 타입
 export type RoomType = {
-  id: number;
-  maximumGuestCount: number;
-  latitude: number;
-  longitude: number;
-  country: string;
-  city: string;
-  district: string;
-  streetAddress: string;
-  detailAddress: string;
-  postcode: string;
-  photos: string[];
-  description: string;
-  title: string;
-  price: string;
-  startDate: string;
-  endDate: string;
-  createdAt: string;
-  updatedAt: string;
-  host: UserType;
+	id: number;
+	maximumGuestCount: number;
+	latitude: number;
+	longitude: number;
+	country: string;
+	city: string;
+	district: string;
+	streetAddress: string;
+	detailAddress: string;
+	postcode: string;
+	photos: string[];
+	description: string;
+	title: string;
+	price: string;
+	startDate: string;
+	endDate: string;
+	createdAt: string;
+	updatedAt: string;
+	host: UserType;
 };

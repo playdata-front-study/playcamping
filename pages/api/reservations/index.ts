@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import { StoredReservation } from '../../../types/reservation';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-	// 숙소 등록하기
+	// 예약하기
 	if (req.method === 'POST') {
 		try {
 			const { userId, checkInDate, checkOutDate, adultCount, childrenCount } =
