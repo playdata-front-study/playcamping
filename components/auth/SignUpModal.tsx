@@ -22,13 +22,11 @@ const Container = styled.form`
   padding: 32px;
   background-color: white;
   z-index: 11;
-
   .mordal-close-x-icon {
     cursor: pointer;
     display: block;
     margin: 0 0 40px auto;
   }
-
   .input-wrapper {
     position: relative;
     margin-bottom: 16px;
@@ -38,14 +36,12 @@ const Container = styled.form`
       cursor: pointer;
     }
   }
-
   .sign-up-birthdat-label {
     font-size: 16px;
     font-weight: 600;
     margin-top: 16px;
     margin-bottom: 8px;
   }
-
   .sign-up-modal-birthday-info {
     margin-bottom: 16px;
     color: ${palette.gray};

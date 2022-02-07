@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from '../../../store';
 import palette from '../../../styles/palette';
@@ -10,6 +10,7 @@ import useModal from '../../../hooks/useModal';
 import AuthModal from '../../auth/AuthModal';
 import { useRouter } from 'next/router';
 import { makeReservationAPI } from '../../../lib/api/reservations';
+import { isEmpty } from 'lodash';
 
 const Container = styled.div`
 	position: sticky;
@@ -156,6 +157,24 @@ const RoomDetailReservation: React.FC = () => {
 		return null;
 	}
 	const userId = useSelector((state) => state.user.id);
+	// 해당 숙소 예약마감된 날짜들
+	const reservations = useSelector(
+		(state) => state.reservation.roomReservations
+	);
+	const checkInBlockDates: string[] = [];
+	const checkOutBlockDates: string[] = [];
+	reservations.forEach((v) => {
+		const start = new Date(v.checkInDate);
+		while (start < new Date(v.checkOutDate)) {
+			checkInBlockDates.push(start.toISOString());
+			start.setDate(start.getDate() + 1);
+		}
+		const end = new Date(v.checkOutDate);
+		while (end > new Date(v.checkInDate)) {
+			checkOutBlockDates.push(end.toISOString());
+			end.setDate(end.getDate() - 1);
+		}
+	});
 
 	const { openModal, ModalPortal, closeModal } = useModal();
 
@@ -168,7 +187,7 @@ const RoomDetailReservation: React.FC = () => {
 	const checkOutRef = useRef<HTMLLabelElement>(null);
 	const router = useRouter();
 
-	// 예약하기 클릭시 - 날짜 선택 안됐다면 자동으로 포커스 가게 하기
+	// 예약하기 클릭시
 	const onClickReservationButton = async () => {
 		if (!userId) {
 			openModal();
@@ -221,6 +240,7 @@ const RoomDetailReservation: React.FC = () => {
 								endDate={new Date(endDate as Date)}
 								minDate={new Date(room.startDate)}
 								maxDate={new Date(room.endDate)}
+								excludeDates={checkInBlockDates.map((v) => new Date(v))} // 이미 예약된 날짜 선택 못하게
 							/>
 						</label>
 					</div>
@@ -239,6 +259,7 @@ const RoomDetailReservation: React.FC = () => {
 								endDate={new Date(endDate as Date)}
 								minDate={new Date(room.startDate)}
 								maxDate={new Date(room.endDate)}
+								excludeDates={checkOutBlockDates.map((v) => new Date(v))}
 							/>
 						</label>
 					</div>

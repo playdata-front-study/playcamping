@@ -17,7 +17,7 @@ const Container = styled.div`
 	border-radius: 12px;
 	cursor: pointer;
 	&:hover {
-		border-color: ${palette.gray};
+		border-color: ${palette.lightgray};
 	}
 
 	.search-bar-location-texts {
@@ -76,11 +76,10 @@ const SearchLocation: React.FC = () => {
 	const [results, setResults] = useState<
 		{ description: string; placeId: string }[]
 	>([]);
-
-	const inputRef = useRef<HTMLInputElement | null>(null);
-
 	const location = useSelector((state) => state.searchRoom.location);
-	const searchKeyword = useDebounce(location, 150); // input값에 debounce 적용
+	// input값에 debounce 적용
+	const searchKeyword = useDebounce(location, 150);
+	const inputRef = useRef<HTMLInputElement | null>(null);
 
 	const dispatch = useDispatch();
 
