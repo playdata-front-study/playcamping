@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import Home from '../components/home/Home';
 import axios from '../lib/api';
 import { meAPI } from '../lib/api/auth';
+import { getRoomListAPI } from '../lib/api/rooms';
 import { cookieStringToObject } from '../lib/utils';
 import { wrapper } from '../store';
+import { roomActions } from '../store/room';
 import { userActions } from '../store/user';
 
 const Container = styled.div`
@@ -37,11 +39,13 @@ const index: NextPage = () => {
 // 				const { data } = await meAPI();
 // 				store.dispatch(userActions.setLoggedUser(data));
 // 			}
+
 // 		} catch (e) {
 // 			console.log(e);
 // 		}
 // 		return {};
 // 	}
+
 // );
 
 export default index;
