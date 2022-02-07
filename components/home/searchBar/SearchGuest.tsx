@@ -16,7 +16,7 @@ const Container = styled.div`
 	border-radius: 12px;
 	cursor: pointer;
 	&:hover {
-		border-color: ${palette.gray};
+		border-color: ${palette.lightgray};
 	}
 
 	> div {
@@ -54,7 +54,8 @@ const Container = styled.div`
 	}
 	.search-bar-guests-text {
 		font-size: 14px;
-		font-weight: 600;
+		/* font-weight: 600; */
+		color: black;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;

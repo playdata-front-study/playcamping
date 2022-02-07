@@ -132,6 +132,11 @@ const Container = styled.div`
 		background-color: transparent;
 		pointer-events: none;
 	} */
+
+	.day-reserved {
+		color: ${palette.lightgray}
+		pointer-events: none;
+	}
 `;
 
 const DatePicker: React.FC<ReactDatePickerProps> = ({ ...props }) => {

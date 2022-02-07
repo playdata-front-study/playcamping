@@ -10,6 +10,7 @@ import user from './user';
 import registerRoom from './registerRoom';
 import auth from './auth';
 import room from './room';
+import reservation from './reservation';
 
 const rootReducer = combineReducers({
 	common: common.reducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
 	registerRoom: registerRoom.reducer,
 	searchRoom: searchSite.reducer,
 	room: room.reducer,
+	reservation: reservation.reducer,
 });
 
 //* 스토어의 타입
@@ -49,4 +51,4 @@ const initStore: MakeStore<any> = () => {
 	return store;
 };
 
-export const wrapper = createWrapper(initStore);
+export const wrapper = createWrapper(initStore, { debug: true });
