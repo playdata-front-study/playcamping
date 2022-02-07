@@ -5,8 +5,12 @@ import { RegisterRoomState } from "../types/reduxState";
 
 //* 초기 상태
 const initialState: RegisterRoomState = {
+  //* 캠핑 종류
+  campingType: null,
+  //* 편의 시설
+  amenities: [],
   //* 인원수
-  maximumGuestCount: 1,
+  maximumGuestCount: 0,
   //* 국가/지역
   country: "",
   //* 시/도
@@ -27,6 +31,8 @@ const initialState: RegisterRoomState = {
   photos: [],
   //* 숙소 제목
   title: "",
+  //* 숙소 설명
+  description: "",
   //* 숙소 요금
   price: 0,
   //* 예약 시작 날짜
@@ -39,6 +45,14 @@ const registerRoom = createSlice({
   name: "registerRoom",
   initialState,
   reducers: {
+    //* 캠핑 종류 변경하기
+    setCampingType(state, action: PayloadAction<string | null>) {
+      state.campingType = action.payload;
+    },
+    //* 편의 공간 변경하기
+    setAmenities(state, action: PayloadAction<string[]>) {
+      state.amenities = action.payload;
+    },
     //* 최대 인원수 변경하기
     setMaximumGuestCount(state, action: PayloadAction<number>) {
       state.maximumGuestCount = action.payload;
@@ -83,6 +97,10 @@ const registerRoom = createSlice({
     //* 숙소 제목 변경하기
     setTitle(state, action: PayloadAction<string>) {
       state.title = action.payload;
+    },
+    //* 숙소 설명 변경하기
+    setDescription(state, action: PayloadAction<string>) {
+      state.description = action.payload;
     },
     //* 숙소 요금 변경하기
     setPrice(state, action: PayloadAction<number>) {

@@ -154,19 +154,19 @@ const RegisterRoomGeometry: React.FC = () => {
   return (
     <>
       <Container>
-        <h2>📌핀이 놓인 위치가 정확한가요?</h2>
+        <h2>📌 핀이 놓인 위치가 정확한가요?</h2>
         <h3>2.5단계</h3>
         <p>
           필요한 경우 핀이 정확한 위치에 자리하도록 지도에{" "}
-          <span className='register-room-geometry-map-newpin'>새 핀</span>을
+          <span className="register-room-geometry-map-newpin">새 핀</span>을
           꽂아주세요.🎯🎯
         </p>
-        <div className='register-room-geometry-map-wrapper'>
-          <div ref={mapRef} id='map' />
+        <div className="register-room-geometry-map-wrapper">
+          <div ref={mapRef} id="map" />
         </div>
         <RegisterRoomFooter
-          prevHref='/room/register/location'
-          nextHref='/room/register/photo'
+          prevHref="/room/register/location"
+          nextHref="/room/register/photo"
         />
       </Container>
     </>

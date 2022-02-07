@@ -13,33 +13,36 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     //숙소 등록하기
     try {
       const {
+        campingType,
+        amenities,
         maximumGuestCount,
         latitude,
         longitude,
-        country,
         city,
         district,
         streetAddress,
-        detailAddress,
         postcode,
         photos,
         title,
+        description,
         price,
         startDate,
         endDate,
         hostId,
       } = req.body;
       if (
+        !campingType ||
+        !amenities ||
         !maximumGuestCount ||
         !latitude ||
         !longitude ||
-        !country ||
         !city ||
         !district ||
         !streetAddress ||
         !postcode ||
         !photos ||
         !title ||
+        !description ||
         !price ||
         !startDate ||
         !endDate ||
@@ -72,87 +75,87 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       Data.room.write([...rooms, newRoom]);
       res.statusCode = 201;
       return res.end();
-    } catch (e) {
+    } catch (e: any) {
       console.log(e);
       return res.send(e.message);
     }
   }
 
-	//* 숙소 리스트 검색
-	if (req.method === 'GET') {
-		console.log('pages/api/rooms : GET query ???', req.query);
-		const {
-			checkInDate,
-			checkOutDate,
-			adultCount,
-			childrenCount,
-			latitude,
-			longitude,
-			location,
-		} = req.query;
+  //* 숙소 리스트 검색
+  if (req.method === "GET") {
+    console.log("pages/api/rooms : GET query ???", req.query);
+    const {
+      checkInDate,
+      checkOutDate,
+      adultCount,
+      childrenCount,
+      latitude,
+      longitude,
+      location,
+    } = req.query;
 
     try {
       const rooms = await Data.room.getList();
 
-			const filteredRooms = rooms.filter((room) => {
-				// 위치로 검색
-				if (latitude && latitude !== '0' && longitude && longitude !== '0') {
-					if (
-						!(
-							Number(latitude) - 0.5 < room.latitude &&
-							room.latitude < Number(latitude) + 0.05 &&
-							Number(longitude) - 0.5 < room.longitude &&
-							room.longitude < Number(longitude) + 0.05
-						)
-					) {
-						return false;
-					}
-				}
-				// 체크인 & 체크아웃 날짜로 검색
-				if (checkInDate) {
-					if (
-						new Date(checkInDate as string) < new Date(room.startDate) ||
-						new Date(checkInDate as string) > new Date(room.endDate)
-					) {
-						return false;
-					}
-				}
-				if (checkOutDate) {
-					if (
-						new Date(checkOutDate as string) < new Date(room.startDate) ||
-						new Date(checkOutDate as string) > new Date(room.endDate)
-					) {
-						return false;
-					}
-				}
-				// 인원수로 검색
-				if (
-					room.maximumGuestCount <
-					Number(adultCount as string) +
-						(Number(childrenCount as string) * 0.5 || 0)
-				) {
-					return false;
-				}
+      const filteredRooms = rooms.filter((room) => {
+        // 위치로 검색
+        if (latitude && latitude !== "0" && longitude && longitude !== "0") {
+          if (
+            !(
+              Number(latitude) - 0.5 < room.latitude &&
+              room.latitude < Number(latitude) + 0.05 &&
+              Number(longitude) - 0.5 < room.longitude &&
+              room.longitude < Number(longitude) + 0.05
+            )
+          ) {
+            return false;
+          }
+        }
+        // 체크인 & 체크아웃 날짜로 검색
+        if (checkInDate) {
+          if (
+            new Date(checkInDate as string) < new Date(room.startDate) ||
+            new Date(checkInDate as string) > new Date(room.endDate)
+          ) {
+            return false;
+          }
+        }
+        if (checkOutDate) {
+          if (
+            new Date(checkOutDate as string) < new Date(room.startDate) ||
+            new Date(checkOutDate as string) > new Date(room.endDate)
+          ) {
+            return false;
+          }
+        }
+        // 인원수로 검색
+        if (
+          room.maximumGuestCount <
+          Number(adultCount as string) +
+            (Number(childrenCount as string) * 0.5 || 0)
+        ) {
+          return false;
+        }
 
-				return true;
-			});
+        return true;
+      });
 
-			//* host 정보 넣기
-			const roomsWithHost = await Promise.all(
-				filteredRooms.map(async (room) => {
-					const host = await Data.user.find({ id: room.hostId });
-					return { ...room, host };
-				})
-			);
+      //* host 정보 넣기
+      const roomsWithHost = await Promise.all(
+        filteredRooms.map(async (room) => {
+          const host = await Data.user.find({ id: room.hostId });
+          return { ...room, host };
+        })
+      );
 
-			res.statusCode = 200;
-			console.log('검색된 캠핑장');
-			console.log(roomsWithHost);
-			return res.send(roomsWithHost);
-		} catch (e) {
-			console.log(e);
-		}
-	}
+      res.statusCode = 200;
+      console.log("검색된 캠핑장");
+      console.log(roomsWithHost);
+      return res.send(roomsWithHost);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   res.statusCode = 405;
 

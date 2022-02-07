@@ -13,6 +13,8 @@ export type UserState = UserType & {
 
 //* 숙소 등록하기 redux state
 export type RegisterRoomState = {
+  campingType: string | null;
+  amenities: string[];
   maximumGuestCount: number;
   country: string;
   city: string;
@@ -24,6 +26,7 @@ export type RegisterRoomState = {
   longitude: number;
   photos: string[];
   title: string;
+  description: string;
   price: number;
   startDate: string | null;
   endDate: string | null;
@@ -42,6 +45,6 @@ export type SearchRoomState = {
 
 //* 숙소 redux state
 export type RoomState = {
-	rooms: RoomType[];
-	detail: RoomType | null;
+  rooms: RoomType[];
+  detail: RoomType | null;
 };
