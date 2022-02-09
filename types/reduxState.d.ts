@@ -1,4 +1,4 @@
-import { StoredReservation } from './reservation';
+import { ReservationType, StoredReservation } from './reservation';
 import { BedType, RoomType } from './room';
 import { UserType } from './user';
 
@@ -50,5 +50,5 @@ export type RoomState = {
 //* 숙소 예약 상태
 export type ReservationState = {
 	roomReservations: StoredReservation[];
-	userReservations: StoredReservation[];
+	userReservations: ReservationType[];
 };

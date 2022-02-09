@@ -1,6 +1,7 @@
 import { useSelector } from '../store';
 import { useDispatch } from 'react-redux';
 import { searchRoomActions } from '../store/searchRoom';
+import moment from 'moment';
 
 // 날짜 형태를 string으로 바꿔서 리덕스 스토어에 저장하기 위한 커스텀 훅
 const useSearchDate = () => {
@@ -10,7 +11,11 @@ const useSearchDate = () => {
 
 	const setCheckInDateDispatch = (date: Date | null) => {
 		if (date) {
-			dispatch(searchRoomActions.setStartDate(date.toISOString()));
+			dispatch(
+				searchRoomActions.setStartDate(
+					moment(date, 'YYYY-MM-DD').format().split('T')[0]
+				)
+			);
 		} else {
 			dispatch(searchRoomActions.setStartDate(null));
 		}
@@ -18,7 +23,11 @@ const useSearchDate = () => {
 
 	const setCheckOutDateDispatch = (date: Date | null) => {
 		if (date) {
-			dispatch(searchRoomActions.setEndDate(date.toISOString()));
+			dispatch(
+				searchRoomActions.setEndDate(
+					moment(date, 'YYYY-MM-DD').format().split('T')[0]
+				)
+			);
 		} else {
 			dispatch(searchRoomActions.setEndDate(null));
 		}
