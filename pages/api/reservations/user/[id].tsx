@@ -16,7 +16,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				const room = Data.room.find(reservation.roomId);
 				roomReservations.push({ ...reservation, room: room });
 			});
-			console.log(roomReservations);
 
 			res.statusCode = 200;
 			return res.send(roomReservations);

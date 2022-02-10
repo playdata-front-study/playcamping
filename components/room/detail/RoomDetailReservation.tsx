@@ -11,6 +11,7 @@ import AuthModal from '../../auth/AuthModal';
 import { useRouter } from 'next/router';
 import { makeReservationAPI } from '../../../lib/api/reservations';
 import { isEmpty } from 'lodash';
+import moment from 'moment';
 
 const Container = styled.div`
 	position: sticky;
@@ -161,17 +162,17 @@ const RoomDetailReservation: React.FC = () => {
 	const reservations = useSelector(
 		(state) => state.reservation.roomReservations
 	);
-	const checkInBlockDates: string[] = [];
-	const checkOutBlockDates: string[] = [];
+	const checkInBlockDates: Date[] = [];
+	const checkOutBlockDates: Date[] = [];
 	reservations.forEach((v) => {
 		const start = new Date(v.checkInDate);
 		while (start < new Date(v.checkOutDate)) {
-			checkInBlockDates.push(start.toISOString());
+			checkInBlockDates.push(start);
 			start.setDate(start.getDate() + 1);
 		}
 		const end = new Date(v.checkOutDate);
 		while (end > new Date(v.checkInDate)) {
-			checkOutBlockDates.push(end.toISOString());
+			checkOutBlockDates.push(end);
 			end.setDate(end.getDate() - 1);
 		}
 	});
@@ -200,8 +201,8 @@ const RoomDetailReservation: React.FC = () => {
 				const body = {
 					roomId: room.id,
 					userId,
-					checkInDate: startDate!.toISOString(),
-					checkOutDate: endDate!.toISOString(),
+					checkInDate: moment(startDate!, 'YYYY-MM-DD').format().split('T')[0],
+					checkOutDate: moment(endDate!, 'YYYY-MM-DD').format().split('T')[0],
 					adultCount,
 					childrenCount,
 				};
@@ -240,7 +241,7 @@ const RoomDetailReservation: React.FC = () => {
 								endDate={new Date(endDate as Date)}
 								minDate={new Date(room.startDate)}
 								maxDate={new Date(room.endDate)}
-								excludeDates={checkInBlockDates.map((v) => new Date(v))} // 이미 예약된 날짜 선택 못하게
+								excludeDates={checkInBlockDates} // 이미 예약된 날짜 선택 못하게
 							/>
 						</label>
 					</div>
@@ -259,7 +260,7 @@ const RoomDetailReservation: React.FC = () => {
 								endDate={new Date(endDate as Date)}
 								minDate={new Date(room.startDate)}
 								maxDate={new Date(room.endDate)}
-								excludeDates={checkOutBlockDates.map((v) => new Date(v))}
+								excludeDates={checkOutBlockDates}
 							/>
 						</label>
 					</div>
