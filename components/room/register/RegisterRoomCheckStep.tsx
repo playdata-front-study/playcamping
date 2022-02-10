@@ -68,17 +68,17 @@ const RegisterRoomCheckStep: React.FC<IProps> = ({
     return (
       <Container>
         <Link href={href}>
-          <a className='register-room-check-step-in-progress'>
+          <a className="register-room-check-step-in-progress">
             <span>{step}</span>
           </a>
         </Link>
-        <Link href={href}>
+        {/* <Link href={href}>
           <a className='register-room-check-step-continue-button'>
             <Button color='cyan' size='small' width='55px'>
               계속
             </Button>
           </a>
-        </Link>
+        </Link> */}
       </Container>
     );
   }
@@ -86,14 +86,16 @@ const RegisterRoomCheckStep: React.FC<IProps> = ({
     //유효하지 않은 단계는~~~
     return (
       <Container>
-        <p className='disabled-step'>{step}</p>
+        <Link href={href}>
+          <a className="disabled-step">{step}</a>
+        </Link>
       </Container>
     );
   }
   return (
     <Container>
       <Link href={href}>
-        <a className='checked-step'>
+        <a className="checked-step">
           <CheckMarkIcon />
           <span>{step}</span>
         </a>

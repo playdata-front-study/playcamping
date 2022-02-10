@@ -11,6 +11,8 @@ const initialState: RegisterRoomState = {
   amenities: [],
   //* 인원수
   maximumGuestCount: 0,
+  //* 사용자 위치 ???
+  location: "",
   //* 국가/지역
   country: "",
   //* 시/도
@@ -57,6 +59,10 @@ const registerRoom = createSlice({
     setMaximumGuestCount(state, action: PayloadAction<number>) {
       state.maximumGuestCount = action.payload;
       return state; //state를 return ???
+    },
+    //* 사용자 위치 변경하기
+    setLocation(state, action: PayloadAction<string>) {
+      state.location = action.payload;
     },
     //* 국가 변경하기
     setCountry(state, action: PayloadAction<string>) {
