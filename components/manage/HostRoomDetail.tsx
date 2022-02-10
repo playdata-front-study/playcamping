@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import palette from '../../styles/palette';
+import Button from '../common/Button';
 import HostRoomDetailPhotos from './HostRoomDetailPhotos';
 
 const Container = styled.div`
@@ -104,6 +105,12 @@ const HostRoomDetail = () => {
 				{room.city}, {room.district}
 			</p>
 			<HostRoomDetailPhotos />
+			<Button
+				className='reservation-card-cancel-button'
+				color='cyan'
+				width='89px'>
+				삭제하기
+			</Button>
 		</Container>
 	);
 };

@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DynamoDBStreams } from 'aws-sdk';
-import { makeMoneyString } from '../../lib/utils';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
 import { useDispatch } from 'react-redux';
-import { reservationActions } from '../../store/reservation';
 import { useRouter } from 'next/router';
 import { RoomType } from '../../types/room';
 import Link from 'next/link';
+import { useSelector } from '../../store';
 
 const Container = styled.div`
 	width: 100%;
@@ -69,23 +67,10 @@ interface Iprops {
 }
 
 const ManageCard: React.FC<Iprops> = ({ hostRoom }) => {
-	const days =
-		new Date(hostRoom.checkOutDate).getDate() -
-		new Date(hostRoom.checkInDate).getDate();
-
-	const dispatch = useDispatch();
-	const router = useRouter();
-	const cancelReservation = async (roomId:number) => {
-		try {
-			// await deleteReservationAPI(reservationId);
-			alert('예약이 취소되었습니다.');
-			router.push('/reservation');
-		}catch(e){
-			console.log(e);
-		}
-	};
+	const reservations = useSelector(
+		(state) => state.reservation.userReservations
+	);
 	
-
 	return (
 		<Container>
 			<Link href={`/manage/${hostRoom.id}`}>
@@ -100,23 +85,16 @@ const ManageCard: React.FC<Iprops> = ({ hostRoom }) => {
 					<p className='reservation-card-info-location'>
 						{hostRoom.city} {hostRoom.district}
 					</p>
-					{/* <p className='reservation-card-info-dates'>
-						{hostRoom.checkInDate.split('T')[0]} ~{' '}
-						{hostRoom.checkOutDate.split('T')[0]}
-					</p> */}
-					{/* <p className='reservation-card-info-guests'>
-						성인 {hostRoom.adultCount}명, 아동 {hostRoom.childrenCount}명
-					</p>
-					<p className='reservation-card-info-price'>
-						총 {makeMoneyString(String(days * hostRoom.room.price))}원 /{' '}
-						{days}박
-					</p> */}
-					{/* <Button
-						className='reservation-card-cancel-button'
-						color='cyan'
-						width='89px'>
-						캠핑장 삭제
-					</Button> */}
+
+					{hostRoom.reservation.map((v) => (
+						<p className='reservation-card-info-dates'>
+							{v.checkInDate.split('T')[0]} ~{' '}
+							{v.checkOutDate.split('T')[0]}
+
+							(성인 {v.adultCount}명, 아동 {v.childrenCount}명)
+						</p>
+
+					))}
 				</div>
 			</div>
 			</Link>

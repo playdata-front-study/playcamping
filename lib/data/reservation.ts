@@ -25,4 +25,9 @@ const write = (reservations: StoredReservation[]) => {
 	writeFileSync('data/reservations.json', JSON.stringify(reservations));
 };
 
-export default { getList, exist, find, write };
+const findReservations = ({roomId}: {roomId: number}) => {
+	const reservations = getList();
+	return reservations.filter((reservation) => reservation.roomId == roomId )
+};
+
+export default { getList, exist, find, write, findReservations };

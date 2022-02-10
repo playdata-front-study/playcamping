@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from '../../store';
 import ManageCard from './ManageCard';
-import ReservationCard from './ManageCard';
 
 const Container = styled.div`
 	width: 100%;
@@ -18,12 +17,10 @@ const Container = styled.div`
 
 const ManageMain: React.FC = () => {
 	const hostRooms = useSelector((state) => state.room.rooms);
-	console.log('dddddddddddddddddddddcdcdcdcd')
-	console.log(hostRooms)
 
 	return (
 		<Container>
-			<h2>등록한 캠핑장</h2>
+			<h2>캠핑장 관리</h2>
 			{hostRooms.map((v, idx) => (
 				<ManageCard hostRoom={v} key={idx} />
 			))}

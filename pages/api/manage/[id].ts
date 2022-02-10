@@ -1,13 +1,10 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import Data from "../../../lib/data";
 
-
-
 export default async (req: NextApiRequest, res: NextApiResponse) => {
  
   //* 등록한 숙소만 검색
   if (req.method === 'GET') {
-    console.log("manage apikkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk")
     const { id } = req.query;
 
     try {
@@ -19,12 +16,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const roomsWithHost = await Promise.all(
          rooms.map(async (room) => {
           const host = await Data.user.find({ id: room.hostId });
-          return { ...room, host };
+          const reservation = await Data.reservation.findReservations({ roomId: room.id });
+          console.log(reservation);
+          return { ...room, host, reservation };
         })
       );
 
       res.statusCode = 200;
       console.log('검색된 캠핑장');
+      
       console.log(roomsWithHost);
       return res.send(roomsWithHost);
     } catch (e) {
