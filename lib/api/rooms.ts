@@ -31,6 +31,10 @@ export const getRoomAPI = (roomId: number) =>
 	axios.get<RoomType>(`/api/rooms/${roomId}`);
 
 //* 호스트가 등록한 숙소 리스트 불러오기
-export const getHostRoomListAPI = (queries: GetRoomListAPIQueries) => {
-	return axios.get<RoomType[]>(makeQueryString('/api/rooms/manage', queries));
+export const getHostRoomListAPI = (userId: number) => {
+	return axios.get<RoomType[]>(`/api/manage/${userId}`);
 };
+
+// //* 호스트가 등록한 숙소 리스트 불러오기
+// export const getHostRoomListAPI = (userId: number) =>
+// 	axios.get<RoomType[]>(`api/rooms/manage/${userId}`);

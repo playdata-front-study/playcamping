@@ -20,6 +20,8 @@ index.getInitialProps = wrapper.getInitialPageProps(
 				latitude,
 				longitude,
 			} = etc.query;
+			console.log('checkInDate')
+			console.log(etc.query)
 
 			try {
 				const { data } = await getRoomListAPI({

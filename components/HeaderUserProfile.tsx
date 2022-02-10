@@ -53,7 +53,7 @@ const HeaderUserProfile: React.FC = () => {
 							<li>예약내역</li>
 						</a>
 					</Link>
-          <Link href="/room/manage/campsitelist">
+          <Link href="/manage">
             <a
               role="presentation"
               onClick={() => {
