@@ -17,6 +17,7 @@ export type RegisterRoomState = {
   campingType: string | null;
   amenities: string[];
   maximumGuestCount: number;
+  location: string;
   country: string;
   city: string;
   district: string;
