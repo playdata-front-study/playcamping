@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { differenceInDays } from 'date-fns/differenceInDays';
-import { DynamoDBStreams } from 'aws-sdk';
-import { makeMoneyString } from '../../lib/utils';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
 import { useDispatch } from 'react-redux';
-import { reservationActions } from '../../store/reservation';
 import { useRouter } from 'next/router';
-import { deleteReservationAPI } from '../../lib/api/reservations';
+import { RoomType } from '../../types/room';
+import Link from 'next/link';
+import { useSelector } from '../../store';
 
 const Container = styled.div`
 	width: 100%;
@@ -64,57 +62,44 @@ const Container = styled.div`
 	}
 `;
 
-const ReservationCard: React.FC = ({ reservation }) => {
-	const days =
-		new Date(reservation.checkOutDate).getDate() -
-		new Date(reservation.checkInDate).getDate();
+interface Iprops {
+	hostRoom: RoomType;
+}
 
-	const dispatch = useDispatch();
-	const router = useRouter();
-	const cancelReservation = async (reservationId:number) => {
-		try {
-			await deleteReservationAPI(reservationId);
-			alert('예약이 취소되었습니다.');
-			router.push('/reservation');
-		}catch(e){
-			console.log(e);
-		}
-	};
-
+const ManageCard: React.FC<Iprops> = ({ hostRoom }) => {
+	const reservations = useSelector(
+		(state) => state.reservation.userReservations
+	);
+	
 	return (
 		<Container>
+			<Link href={`/manage/${hostRoom.id}`}>
 			<div className='reservation-card'>
 				<div className='reservation-card-photo-wrapper'>
-					{<img src={reservation.room.photos[0]} alt='' />}
+					{<img src={hostRoom.photos[0]} alt='' />}
 				</div>
 				<div className='reservation-card-info'>
 					<p className='reservation-card-info-title'>
-						{reservation.room.title}
+						{hostRoom.title}
 					</p>
 					<p className='reservation-card-info-location'>
-						{reservation.room.city} {reservation.room.district}
+						{hostRoom.city} {hostRoom.district}
 					</p>
-					<p className='reservation-card-info-dates'>
-						{reservation.checkInDate.split('T')[0]} ~{' '}
-						{reservation.checkOutDate.split('T')[0]}
-					</p>
-					<p className='reservation-card-info-guests'>
-						성인 {reservation.adultCount}명, 아동 {reservation.childrenCount}명
-					</p>
-					<p className='reservation-card-info-price'>
-						총 {makeMoneyString(String(days * reservation.room.price))}원 /{' '}
-						{days}박
-					</p>
-					<Button
-						className='reservation-card-cancel-button'
-						color='cyan'
-						width='89px'>
-						예약 취소
-					</Button>
+
+					{hostRoom.reservation.map((v) => (
+						<p className='reservation-card-info-dates'>
+							{v.checkInDate.split('T')[0]} ~{' '}
+							{v.checkOutDate.split('T')[0]}
+
+							(성인 {v.adultCount}명, 아동 {v.childrenCount}명)
+						</p>
+
+					))}
 				</div>
 			</div>
+			</Link>
 		</Container>
 	);
 };
 
-export default ReservationCard;
+export default ManageCard;
