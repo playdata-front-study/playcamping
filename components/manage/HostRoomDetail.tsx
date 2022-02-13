@@ -1,114 +1,65 @@
+import { isEmpty } from 'lodash';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import palette from '../../styles/palette';
 import Button from '../common/Button';
 import HostRoomDetailPhotos from './HostRoomDetailPhotos';
+import CustomizedTables from './ReservationTable';
 
 const Container = styled.div`
-	width: 1120px;
-	margin: auto;
-	padding-top: 26px;
-	padding-bottom: 100px;
-	.room-detail-title {
-		font-size: 26px;
-		font-weight: 800;
-		margin-bottom: 15px;
-	}
+  width: 1120px;
+  margin: auto;
+  padding-top: 26px;
+  padding-bottom: 100px;
+  .room-detail-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 15px;
+  }
+  .room-detail-contents {
+    display: flex;
+    justify-content: space-between;
+  }
 
-	.room-detail-location {
-		font-size: 14px;
-		font-weight: 600;
-		text-decoration: underline;
-		color: ${palette.gray};
-		margin-bottom: 24px;
-	}
-	.room-detail-contents {
-		display: flex;
-		justify-content: space-between;
-	}
-	.room-detail-infos {
-		width: 644px;
-		.room-detail-room-type {
-			font-size: 22px;
-			font-weight: 800;
-			margin-bottom: 8px;
-		}
-		.room-detail-space-counts {
-			font-size: 14px;
-		}
-		.room-detail-divider {
-			width: 100%;
-			height: 1px;
-			background-color: ${palette.gray};
-			margin: 32px 0;
-		}
-		.room-detail-description {
-			white-space: break-spaces;
-			word-break: keep-all;
-		}
-	}
-	.room-detatil-bed-type-label {
-		font-size: 22px;
-		font-weight: 600;
-		margin-bottom: 24px;
-	}
-	.room-detail-bed-type-list {
-		display: flex;
-		.room-detail-bedroom-card {
-			padding: 26px 24px;
-			width: 204px;
-			margin-right: 16px;
-			border: 1px solid ${palette.gray};
-			border-radius: 12px;
-			svg {
-				margin-bottom: 20px;
-			}
-			.room-detail-bed-card-number {
-				font-size: 16px;
-				font-weight: 600;
-				margin-bottom: 12px;
-			}
-		}
-	}
-	.room-detatil-conveniences-label {
-		font-size: 22px;
-		font-weight: 600;
-		margin-bottom: 24px;
-	}
-	.room-detatil-conveniences-list {
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		li {
-			display: flex;
-			align-items: center;
-			width: 50%;
-			margin-bottom: 16px;
-			img {
-				margin-right: 16px;
-			}
-		}
+	.reservation-card-cancel-button{
+		margin-top: 100px;
 	}
 `;
 
 const HostRoomDetail = () => {
 	const room = useSelector((state) => state.room.detail);
+	const reservations = useSelector((state) => state.reservation.roomReservations);
+	
+	const deleteRoom = async (reservationId:number) => {
+		try {
+			await deleteRoomAPI(room.id);
+			alert('예약이 취소되었습니다.');
+			router.push('/reservation');
+		}catch(e){
+			console.log(e);
+		}
+	};
+
 	if (!room) {
 		return null;
 	}
+	console.log("캠핑장 관리 상세페이지")
+	console.log(reservations)
 
 	return (
 		<Container>
 			<h1 className='room-detail-title'>{room.title}</h1>
-			<p className='room-detail-location'>
-				{room.city}, {room.district}
-			</p>
 			<HostRoomDetailPhotos />
+			{!isEmpty(reservations)? 
+			(<CustomizedTables reservations={reservations} roomPrice={room.price}/> )
+			:"예약내역이 없습니다."}
+
 			<Button
 				className='reservation-card-cancel-button'
 				color='cyan'
-				width='89px'>
+				width='89px'
+				onClick={deleteRoom}
+			>
 				삭제하기
 			</Button>
 		</Container>

@@ -28,25 +28,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
 		}
 );
 
-
-// index.getInitialProps = wrapper.getInitialPageProps(
-//   (store) => 
-//     async ({ req, res, ...etc }) => {
-//     const cookieObject = cookieStringToObject(req?.headers.cookie);
-//     const { isLogged } = store.getState().user;
-
-//     try {
-//       if (!isLogged && cookieObject.access_token) {
-//         axios.defaults.headers.cookie = cookieObject.access_token;
-//         const userRes = await meAPI();
-//         const userId = userRes.data.id;
-//         const { data } = await getHostRoomListAPI(userId);
-//         store.dispatch(roomActions.setRooms(data));
-//       }
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
-// );
-
 export default index;

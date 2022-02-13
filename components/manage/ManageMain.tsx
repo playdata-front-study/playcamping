@@ -14,7 +14,6 @@ const Container = styled.div`
 	}
 `;
 
-
 const ManageMain: React.FC = () => {
 	const hostRooms = useSelector((state) => state.room.rooms);
 

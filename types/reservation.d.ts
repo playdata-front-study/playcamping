@@ -25,4 +25,5 @@ export type ReservationType = {
 	createdAt: string;
 	updatedAt: string;
 	room: RoomType;
+	user: user[];
 };

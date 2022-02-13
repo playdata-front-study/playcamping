@@ -19,6 +19,7 @@ export type StoredRoomType = {
 	createdAt: Date;
 	updateAt: Date;
 	hostId: number;
+	reservation: ReservationType[];
 };
 
 export type RoomType = {
