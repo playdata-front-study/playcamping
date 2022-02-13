@@ -1,15 +1,14 @@
 import { isEmpty } from "lodash";
 import React, { useMemo } from "react";
 import styled from "styled-components";
-import palette from "../../../styles/palette";
 import { useSelector } from "../../../store";
 import RegisterRoomCheckStep from "./RegisterRoomCheckStep";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 import RegisterRoomSubmitFooter from "./RegisterRoomSubmitFooter";
-import Image from "next/image";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
+  margin-top: 100px;
   min-height: 60vh;
   .register-room-checklist-info {
     margin-bottom: 39px;
@@ -212,22 +211,6 @@ const RegisterRoomChecklist: React.FC = () => {
           inProgress={stepInProgress === "date"}
         />
       </ul>
-      {isCampingTypeActived &&
-      isAmenitiesActived &&
-      isDescriptionActived &&
-      isMaximumGuestCountActived &&
-      isLocationActived &&
-      isPhotoActived &&
-      isTitleActived &&
-      isPriceActived &&
-      isDateActived ? (
-        <RegisterRoomSubmitFooter />
-      ) : (
-        <RegisterRoomFooter
-          prevHref="/room/register/date"
-          nextHref={`/room/register/${stepInProgress}`}
-        />
-      )}
     </Container>
   );
 };

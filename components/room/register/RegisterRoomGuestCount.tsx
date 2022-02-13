@@ -41,7 +41,7 @@ const RegisterRoomGuestCount: React.FC = () => {
   return (
     <Container>
       <h2>👪 캠핑장에 얼마나 많은 인원이 숙박할 수 있나요?</h2>
-      <h3>1단계</h3>
+      <h3>3단계</h3>
       <div className="register-room-maximum-guest-count-wrapper">
         <Counter
           label="최대 숙박 인원"
@@ -49,7 +49,6 @@ const RegisterRoomGuestCount: React.FC = () => {
           onChange={onChangeMaximumGuestCount}
         />
       </div>
-      <RegisterRoomChecklist />
       <RegisterRoomFooter
         isValid={false}
         prevHref="/room/register/amenities"
