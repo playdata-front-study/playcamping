@@ -1,7 +1,9 @@
 import { isEmpty } from 'lodash';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { deleteRoomAPI } from '../../lib/api/rooms';
 import Button from '../common/Button';
 import HostRoomDetailPhotos from './HostRoomDetailPhotos';
 import CustomizedTables from './ReservationTable';
@@ -21,20 +23,22 @@ const Container = styled.div`
     justify-content: space-between;
   }
 
-	.reservation-card-cancel-button{
-		margin-top: 100px;
+	.delete-button{
+		margin-top: 30px;
+		float: right;
 	}
 `;
 
 const HostRoomDetail = () => {
 	const room = useSelector((state) => state.room.detail);
 	const reservations = useSelector((state) => state.reservation.roomReservations);
-	
-	const deleteRoom = async (reservationId:number) => {
+	const router = useRouter();
+
+	const deleteRoom = async (roomId: number) => {
 		try {
-			await deleteRoomAPI(room.id);
-			alert('예약이 취소되었습니다.');
-			router.push('/reservation');
+			await deleteRoomAPI(roomId);
+			alert('캠핑장이 삭제되었습니다.');
+			router.push('/manage');
 		}catch(e){
 			console.log(e);
 		}
@@ -43,6 +47,7 @@ const HostRoomDetail = () => {
 	if (!room) {
 		return null;
 	}
+
 	console.log("캠핑장 관리 상세페이지")
 	console.log(reservations)
 
@@ -53,15 +58,15 @@ const HostRoomDetail = () => {
 			{!isEmpty(reservations)? 
 			(<CustomizedTables reservations={reservations} roomPrice={room.price}/> )
 			:"예약내역이 없습니다."}
-
 			<Button
-				className='reservation-card-cancel-button'
+				className='delete-button'
 				color='cyan'
 				width='89px'
-				onClick={deleteRoom}
+				onClick={() => deleteRoom(room.id)}
 			>
 				삭제하기
 			</Button>
+	
 		</Container>
 	);
 };

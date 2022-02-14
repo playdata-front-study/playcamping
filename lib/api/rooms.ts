@@ -35,6 +35,6 @@ export const getHostRoomListAPI = (userId: number) => {
 	return axios.get<RoomType[]>(`/api/manage/${userId}`);
 };
 
-// //* 호스트가 등록한 숙소 리스트 불러오기
-// export const getHostRoomListAPI = (userId: number) =>
-// 	axios.get<RoomType[]>(`api/rooms/manage/${userId}`);
+//* 캠핑장 삭제
+export const deleteRoomAPI = (roomId: number) =>
+	axios.delete(`api/rooms/${roomId}`);
