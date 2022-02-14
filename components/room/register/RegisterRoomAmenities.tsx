@@ -52,7 +52,6 @@ const RegisterRoomAmenities: React.FC = () => {
           options={amenitiesList}
         />
       </div>
-      <RegisterRoomChecklist />
       <RegisterRoomFooter
         isValid={false}
         prevHref="/room/register/campingtype"
