@@ -44,7 +44,7 @@ const RegisterRoomDescription: React.FC = () => {
   return (
     <Container>
       <h2>💬 게스트에게 숙소에 대해 설명해주세요.</h2>
-      <h3>8단계</h3>
+      <h3>7단계</h3>
       <p className="register-room-description-wrapper">
         숙소의 장점, 특별한 편의시설(예: 빠른 와이파이 또는 주차 시설)과 주변
         지역의 매력을 소개해주세요.
@@ -52,7 +52,6 @@ const RegisterRoomDescription: React.FC = () => {
       <div className="register-room-description-wrapper">
         <Textarea value={description} onChange={onChangeDescription} />
       </div>
-      <RegisterRoomChecklist />
       <RegisterRoomFooter
         prevHref="/room/register/title"
         nextHref="/room/register/price"

@@ -43,6 +43,7 @@ const initialState: RegisterRoomState = {
   endDate: null,
 };
 
+//* 액션들
 const registerRoom = createSlice({
   name: "registerRoom",
   initialState,
