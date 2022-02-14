@@ -1,1 +1,13 @@
-[{"id":1,"roomId":4,"userId":4,"checkInDate":"2022-02-07T15:00:00.000Z","checkOutDate":"2022-02-08T15:00:00.000Z","adultCount":2,"childrenCount":0,"createdAt":"2022-02-04T08:55:27.889Z","updatedAt":"2022-02-04T08:55:27.889Z"},{"id":2,"roomId":4,"userId":4,"checkInDate":"2022-02-22T15:00:00.000Z","checkOutDate":"2022-02-23T15:00:00.000Z","adultCount":2,"childrenCount":0,"createdAt":"2022-02-04T13:31:29.386Z","updatedAt":"2022-02-04T13:31:29.386Z"},{"id":3,"roomId":5,"userId":2,"checkInDate":"2022-02-15T15:00:00.000Z","checkOutDate":"2022-02-17T15:00:00.000Z","adultCount":1,"childrenCount":0,"createdAt":"2022-02-07T21:20:34.711Z","updatedAt":"2022-02-07T21:20:34.711Z"},{"id":4,"roomId":6,"userId":12,"checkInDate":"2022-02-09","checkOutDate":"2022-02-12","adultCount":1,"childrenCount":0,"createdAt":"2022-02-10T05:53:32.331Z","updatedAt":"2022-02-10T05:53:32.331Z"},{"id":5,"roomId":7,"userId":12,"checkInDate":"2022-02-16","checkOutDate":"2022-02-17","adultCount":5,"childrenCount":0,"createdAt":"2022-02-10T05:53:49.392Z","updatedAt":"2022-02-10T05:53:49.392Z"},{"id":6,"roomId":6,"userId":12,"checkInDate":"2022-02-22","checkOutDate":"2022-02-24","adultCount":3,"childrenCount":0,"createdAt":"2022-02-10T05:54:12.230Z","updatedAt":"2022-02-10T05:54:12.230Z"},{"id":7,"roomId":8,"userId":5,"checkInDate":"2022-02-10","checkOutDate":"2022-02-12","adultCount":1,"childrenCount":0,"createdAt":"2022-02-10T12:47:51.502Z","updatedAt":"2022-02-10T12:47:51.502Z"}]
+[
+	{
+		"id": 1,
+		"roomId": 4,
+		"userId": 4,
+		"checkInDate": "2022-02-20",
+		"checkOutDate": "2022-02-21",
+		"adultCount": 1,
+		"childrenCount": 0,
+		"createdAt": "2022-02-09T12:13:04.021Z",
+		"updatedAt": "2022-02-09T12:13:04.021Z"
+	}
+]

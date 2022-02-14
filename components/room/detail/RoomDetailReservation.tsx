@@ -188,6 +188,10 @@ const RoomDetailReservation: React.FC = () => {
 	const checkOutRef = useRef<HTMLLabelElement>(null);
 	const router = useRouter();
 
+	useEffect(() => {
+		checkOutRef.current.focus();
+	}, [startDate]);
+
 	// 예약하기 클릭시
 	const onClickReservationButton = async () => {
 		if (!userId) {

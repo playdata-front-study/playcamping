@@ -19,8 +19,8 @@ export const getRoomReservationAPI = (roomId: number) =>
 
 // 특정 회원 예약내역 조회
 export const getUserReservationAPI = (userId: number) =>
-	axios.get<ReservationType[]>(`api/reservations/user/${userId}`);
+	axios.get<ReservationType[]>(`/api/reservations/user/${userId}`);
 
 // 예약 취소
 export const deleteReservationAPI = (reservationId: number) =>
-	axios.delete(`api/reservations/${reservationId}`);
+	axios.delete(`/api/reservations/${reservationId}`);

@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { differenceInDays } from 'date-fns/differenceInDays';
-import { DynamoDBStreams } from 'aws-sdk';
 import { makeMoneyString } from '../../lib/utils';
 import palette from '../../styles/palette';
 import Button from '../common/Button';
@@ -68,15 +66,15 @@ const ReservationCard: React.FC = ({ reservation }) => {
 	const days =
 		new Date(reservation.checkOutDate).getDate() -
 		new Date(reservation.checkInDate).getDate();
-
 	const dispatch = useDispatch();
 	const router = useRouter();
-	const cancelReservation = async (reservationId:number) => {
+
+	const cancelReservation = async () => {
 		try {
-			await deleteReservationAPI(reservationId);
+			await deleteReservationAPI(reservation.id);
 			alert('예약이 취소되었습니다.');
 			router.push('/reservation');
-		}catch(e){
+		} catch (e) {
 			console.log(e);
 		}
 	};
@@ -108,7 +106,8 @@ const ReservationCard: React.FC = ({ reservation }) => {
 					<Button
 						className='reservation-card-cancel-button'
 						color='cyan'
-						width='89px'>
+						width='89px'
+						onClick={cancelReservation}>
 						예약 취소
 					</Button>
 				</div>
