@@ -20,6 +20,8 @@ const ReservationMain: React.FC = () => {
 		(state) => state.reservation.userReservations
 	);
 
+	console.log(reservations)
+
 	return (
 		<Container>
 			<h2>예약된 캠핑장</h2>

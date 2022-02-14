@@ -92,28 +92,27 @@ const RegisterRoomPhoto: React.FC = () => {
   };
   return (
     <Container>
-      <h2>📸캠핑장 사진 올리기</h2>
-      <h3>3단계</h3>
-      <p className='register-room-step-info'>
+      <h2>📸 캠핑장 사진 올리기</h2>
+      <h3>5단계</h3>
+      <p className="register-room-step-info">
         게스트가 사진을 보고 캠핑장의 느낌을 생생히 떠올려볼 수 있도록 해주세요.
         우선 사진 1장을 업로드하고 숙소를 등록한 후에 추가할 수 있습니다.
       </p>
       {isEmpty(photos) && (
-        <div className='register-room-upload-photo-wrapper'>
+        <div className="register-room-upload-photo-wrapper">
           <>
-            <input type='file' accept='image/*' onChange={uploadImage} />
-            <Button icon={<UploadIcon />} color='pink' width='167px'>
+            <input type="file" accept="image/*" onChange={uploadImage} />
+            <Button icon={<UploadIcon />} color="pink" width="167px">
               사진 업로드
             </Button>
           </>
         </div>
       )}
       {!isEmpty(photos) && <RegisterRoomPhotoCardList photos={photos} />}
-      <RegisterRoomChecklist />
       <RegisterRoomFooter
         isValid={false}
-        prevHref='/room/register/geometry'
-        nextHref='/room/register/title'
+        prevHref="/room/register/geometry"
+        nextHref="/room/register/title"
       />
     </Container>
   );

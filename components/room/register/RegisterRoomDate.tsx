@@ -6,8 +6,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import { useDispatch } from "react-redux";
-import RegisterRoomFooter from "./RegisterRoomFooter";
-import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -76,10 +74,10 @@ const RegisterRoomDate: React.FC = () => {
 
   return (
     <Container>
-      <h2>📆예약 가능 여부 설정하기</h2>
-      <h3>6단계</h3>
-      <div className='register-room-date-wrapper'>
-        <div className='register-room-start-date'>
+      <h2>📆 예약 가능 여부 설정하기</h2>
+      <h3>9단계</h3>
+      <div className="register-room-date-wrapper">
+        <div className="register-room-start-date">
           <label>
             <span>예약 시작일</span>
             <DatePicker
@@ -92,7 +90,7 @@ const RegisterRoomDate: React.FC = () => {
             />
           </label>
         </div>
-        <div className='register-room-end-date'>
+        <div className="register-room-end-date">
           <label>
             <span>예약 종료일</span>
             <DatePicker
@@ -106,11 +104,6 @@ const RegisterRoomDate: React.FC = () => {
           </label>
         </div>
       </div>
-      <RegisterRoomChecklist />
-      <RegisterRoomFooter
-        prevHref='/room/register/price'
-        nextHref='/room/register/checklist'
-      />
     </Container>
   );
 };

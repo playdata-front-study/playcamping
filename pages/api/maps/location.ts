@@ -11,7 +11,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&language=ko&key=${process.env.NEXT_PUBLIC_GOOGLE_MAP_API_KEY}`;
       const { data } = await axios.get(url);
-      console.log(data.results[1]);
 
       const { lat, lng } = data.results[0].geometry.location;
 
@@ -20,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const result = {
           latitude: lat,
           longitude: lng,
-          country: addressComponent[4].long_name,
+          // country: addressComponent[4].long_name,
           city: addressComponent[3].long_name,
           district: addressComponent[2].long_name,
           streetAddress: `${addressComponent[1].long_name}${addressComponent[0].long_name}`,
@@ -33,7 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const result = {
           latitude: lat,
           longitude: lng,
-          country: addressComponent[4].long_name,
+          // country: addressComponent[4].long_name,
           city: addressComponent[3].long_name,
           district: addressComponent[2].long_name,
           streetAddress: `${addressComponent[1].long_name}${addressComponent[0].long_name}`,
@@ -47,6 +46,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.end();
     }
   }
-  res.statusCode = 405;
+  res.statusCode = 405; // get 요청이 아니라서 여기로 넘어온 거 같은데.. 근데 14라인에서 콘솔은 왜 찍히는건데..?
   return res.end();
 };

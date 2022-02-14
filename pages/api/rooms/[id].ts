@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import rooms from '.';
 import Data from '../../../lib/data/index';
 import { StoredUserType } from '../../../types/user';
 
@@ -21,6 +22,20 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 				res.statusCode = 404;
 				return res.send('호스트 정보 없음');
 			}
+			res.statusCode = 404;
+			return res.send('해당 숙소 없음');
+		} catch (e) {
+			console.log(e);
+		}
+	} else if (req.method === 'DELETE') {
+		const { id } = req.query;
+		try {
+			const room = Data.room.find(Number(id as string));
+			delete room[id];
+		
+			return res.end(JSON.stringify(rooms));
+			
+			
 			res.statusCode = 404;
 			return res.send('해당 숙소 없음');
 		} catch (e) {

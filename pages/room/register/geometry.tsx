@@ -1,6 +1,12 @@
 import { NextPage } from "next";
 import dynamic from "next/dynamic";
 import React from "react";
+import styled from "styled-components";
+import RegisterRoomChecklist from "../../../components/room/register/RegisterRoomChecklist";
+
+const Container = styled.div`
+  display: flex;
+`;
 
 // const RegisterRoomGeometry = dynamic(
 //   import("../../../components/room/register/RegisterRoomGeometry"),
@@ -25,7 +31,12 @@ const RegisterRoomGeometry = dynamic(
 );
 
 const geometry: NextPage = () => {
-  return <RegisterRoomGeometry />;
+  return (
+    <Container>
+      <RegisterRoomGeometry />
+      <RegisterRoomChecklist />
+    </Container>
+  );
 };
 
 export default geometry;
