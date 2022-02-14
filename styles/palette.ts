@@ -9,4 +9,5 @@ export default {
   whitegray: "#f7f7f7",
   snow: "#FFF8F6",
   bittersweet: "#ff5a5f",
+  lightgray2: "#ebebeb",
 };
