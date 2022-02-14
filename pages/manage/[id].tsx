@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { wrapper } from '../../store';
-import { getRoomAPI } from '../../lib/api/rooms';
+import { getHostRoomListAPI, getRoomAPI } from '../../lib/api/rooms';
 import { roomActions } from '../../store/room';
 import { getRoomReservationAPI } from '../../lib/api/reservations';
 import { reservationActions } from '../../store/reservation';
@@ -11,16 +11,17 @@ const HostRoom: NextPage = () => {
 	return <HostRoomDetail />;
 };
 
-HostRoom.getInitialProps = wrapper.getInitialPageProps(
+export const getServerSideProps = wrapper.getServerSideProps(
 	(store) =>
 		async ({ req, res, ...etc }) => {
-			const id = etc.query.id;
+			const userId = etc.query.id;
 			try {
-				if (id) {
-					const roomRes = await getRoomAPI(Number(id as string));
+				if (userId) {
+					const roomRes = await getRoomAPI(Number(userId as string));
 					const reservationRes = await getRoomReservationAPI(
-						Number(id as string)
+						Number(userId as string)
 					);
+					
 					store.dispatch(roomActions.setDetailRoom(roomRes.data));
 					store.dispatch(
 						reservationActions.setRoomReservations(reservationRes.data)
@@ -29,7 +30,6 @@ HostRoom.getInitialProps = wrapper.getInitialPageProps(
 			} catch (e) {
 				console.log(e);
 			}
-			return {};
 		}
 );
 

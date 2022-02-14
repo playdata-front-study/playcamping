@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import { RoomType } from '../../types/room';
 import Link from 'next/link';
 import { useSelector } from '../../store';
+import { isEmpty } from 'lodash';
+import RoomAmentityIcon from './RoomAmentityIcon';
 
 const Container = styled.div`
 	width: 100%;
@@ -15,7 +17,7 @@ const Container = styled.div`
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.08);
 
 	.reservation-card {
-		height: 250px;
+		height: 300px;
 		border-radius: 10px;
 		overflow: hidden;
 		display: flex;
@@ -25,11 +27,11 @@ const Container = styled.div`
 		.reservation-card-photo-wrapper {
 			width: 30%;
 			min-width: 300px;
-			height: 250px;
+			height: 300px;
 			overflow: hidden;
 			img {
-				width: 300px;
-				height: 250px;
+				width: 350px;
+				height: 300px;
 			}
 		}
 
@@ -60,6 +62,53 @@ const Container = styled.div`
 			}
 		}
 	}
+	.room-detail-infos {
+    width: 644px;
+    .room-detail-room-type {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .room-detail-space-counts {
+      font-size: 18px;
+    }
+    .room-detail-divider {
+      width: 100%;
+      height: 1px;
+      background-color: ${palette.gray_dd};
+      margin: 32px 0;
+    }
+    .room-detail-description {
+      white-space: break-spaces;
+      word-break: keep-all;
+    }
+  }
+  .room-detatil-bed-type-label {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .room-detatil-conveniences-label {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .room-detatil-conveniences-list {
+		margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    li {
+      display: flex;
+      align-items: center;
+      width: 32%;
+      margin-bottom: 16px;
+      img {
+        margin-right: 16px;
+      }
+    }
+  }
 `;
 
 interface Iprops {
@@ -67,36 +116,42 @@ interface Iprops {
 }
 
 const ManageCard: React.FC<Iprops> = ({ hostRoom }) => {
-	const reservations = useSelector(
-		(state) => state.reservation.userReservations
-	);
+	console.log("캠핑장 관리 카드 페이지")
+	console.log(hostRoom)
 	
 	return (
 		<Container>
 			<Link href={`/manage/${hostRoom.id}`}>
-			<div className='reservation-card'>
-				<div className='reservation-card-photo-wrapper'>
-					{<img src={hostRoom.photos[0]} alt='' />}
-				</div>
-				<div className='reservation-card-info'>
-					<p className='reservation-card-info-title'>
-						{hostRoom.title}
-					</p>
-					<p className='reservation-card-info-location'>
-						{hostRoom.city} {hostRoom.district}
-					</p>
-
-					{hostRoom.reservation.map((v) => (
-						<p className='reservation-card-info-dates'>
-							{v.checkInDate.split('T')[0]} ~{' '}
-							{v.checkOutDate.split('T')[0]}
-
-							(성인 {v.adultCount}명, 아동 {v.childrenCount}명)
+				<div className='reservation-card'>
+					<div className='reservation-card-photo-wrapper'>
+						{<img src={hostRoom.photos[0]} alt='' />}
+					</div>
+					<div className='reservation-card-info'>
+						<p className='reservation-card-info-title'>
+							{hostRoom.title}
 						</p>
-
-					))}
+						<p className='reservation-card-info-location'>
+						{hostRoom.city} {hostRoom.district} {hostRoom.streetAddress} {hostRoom.detailAddress}({hostRoom.postcode})
+						</p>
+						<div className="room-detail-infos">
+						<p className="room-detail-space-counts">
+							{hostRoom.campingType} / 최대 인원 {hostRoom.maximumGuestCount}명 
+						</p>
+						{!isEmpty(hostRoom.amenities) && (
+							<>
+								<ul className="room-detatil-conveniences-list">
+									{hostRoom.amenities.map((amenity, index) => (
+										<li key={index}>
+											<RoomAmentityIcon amenity={amenity} />
+											{amenity}
+										</li>
+									))}
+								</ul>
+							</>
+						)}
+						</div>
 				</div>
-			</div>
+				</div>
 			</Link>
 		</Container>
 	);
