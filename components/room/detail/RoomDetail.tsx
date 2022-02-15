@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { isEmpty } from 'lodash';
+import React from 'react';
 import styled from 'styled-components';
-import room from '../../../lib/data/room';
 import { useSelector } from '../../../store';
 import palette from '../../../styles/palette';
+import RoomAmentityIcon from '../../manage/RoomAmentityIcon';
 import RoomDetailPhotos from './RoomDetailPhotos';
 import RoomDetailReservation from './RoomDetailReservation';
 
@@ -36,7 +37,7 @@ const Container = styled.div`
 			margin-bottom: 8px;
 		}
 		.room-detail-space-counts {
-			font-size: 14px;
+			font-size: 18px;
 		}
 		.room-detail-divider {
 			width: 100%;
@@ -49,29 +50,7 @@ const Container = styled.div`
 			word-break: keep-all;
 		}
 	}
-	.room-detatil-bed-type-label {
-		font-size: 22px;
-		font-weight: 600;
-		margin-bottom: 24px;
-	}
-	.room-detail-bed-type-list {
-		display: flex;
-		.room-detail-bedroom-card {
-			padding: 26px 24px;
-			width: 204px;
-			margin-right: 16px;
-			border: 1px solid ${palette.gray};
-			border-radius: 12px;
-			svg {
-				margin-bottom: 20px;
-			}
-			.room-detail-bed-card-number {
-				font-size: 16px;
-				font-weight: 600;
-				margin-bottom: 12px;
-			}
-		}
-	}
+
 	.room-detatil-conveniences-label {
 		font-size: 22px;
 		font-weight: 600;
@@ -95,6 +74,7 @@ const Container = styled.div`
 
 const RoomDetail = () => {
 	const room = useSelector((state) => state.room.detail);
+
 	if (!room) {
 		return null;
 	}
@@ -106,7 +86,34 @@ const RoomDetail = () => {
 				{room.city}, {room.district}
 			</p>
 			<RoomDetailPhotos />
-			<RoomDetailReservation />
+			<section className="room-detail-contents">
+        <div className="room-detail-infos">
+          <p className="room-detail-room-type">
+            {room.host.lastname}님이 호스팅하는 {room.campingType}
+          </p>
+          <p className="room-detail-space-counts">
+            최대 인원 {room.maximumGuestCount}명
+          </p>
+          <div className="room-detail-divider" />
+          <p className="room-detail-description">{room.description}</p>
+          <div className="room-detail-divider" />
+     
+          {!isEmpty(room.amenities) && (
+            <>
+              <p className="room-detatil-conveniences-label">편의시설</p>
+              <ul className="room-detatil-conveniences-list">
+                {room.amenities.map((amenity, index) => (
+                  <li key={index}>
+                    <RoomAmentityIcon amenity={amenity} />
+                    {amenity}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+        <RoomDetailReservation />
+      </section>
 		</Container>
 	);
 };
