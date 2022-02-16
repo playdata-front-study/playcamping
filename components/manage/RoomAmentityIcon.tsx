@@ -7,29 +7,25 @@ interface IProps {
 const RoomAmentityIcon: React.FC<IProps> = ({ amenity }) => {
   const iconUrl = () => {
     switch (amenity) {
-      case "무선 인터넷":
+      case "바비큐장":
+        return "/static/svg/room/detail/bbq.svg";
+      case "수영장":
+        return "/static/svg/room/detail/pool.svg";
+      case "반려동물":
+        return "/static/svg/room/detail/dog.svg";
+      case "글램핑":
+        return "/static/svg/room/detail/camping.svg";
+      case "카라반":
+        return "/static/svg/room/detail/caravan.svg";
+      case "와이파이":
         return "/static/svg/room/detail/wifi.svg";
-      case "TV":
-        return "/static/svg/room/detail/tv.svg";
-      case "냉장고":
-        return "/static/svg/room/detail/refrigerator.svg";
-      case "전기 포트":
-        return "/static/svg/room/detail/kettle.svg";
-      case "난방":
-        return "/static/svg/room/detail/thermometer.svg";
-      case "에어컨":
-        return "/static/svg/room/detail/ice.svg";
-      case "다리미":
-        return "/static/svg/room/detail/iron.svg";
-      case "샴푸":
-        return "/static/svg/room/detail/shampoo.svg";
-      case "헤어 드라이어":
-        return "/static/svg/room/detail/hair-dryer.svg";
-      case "조식, 커피, 차":
-        return "/static/svg/room/detail/coffee.svg";
-      case "이동식 난로":
-        return "/static/svg/room/detail/fireplace.svg";
-      case "개인 화장실/샤워실":
+      case "침대방":
+        return "/static/svg/room/detail/bed.svg";
+      case "계곡":
+        return "/static/svg/room/detail/valley.svg";
+      case "바닷가":
+        return "/static/svg/room/detail/wave.svg";
+      case "화장실/샤워실":
         return "/static/svg/room/detail/shower.svg";
       default:
         return "";
