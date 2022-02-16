@@ -15,7 +15,6 @@ import {
 import palette from "../../../styles/palette";
 import { useDispatch } from "react-redux";
 import RegisterRoomFooter from "./RegisterRoomFooter";
-import RegisterRoomChecklist from "./RegisterRoomChecklist";
 import useDebounce from "../../../hooks/useDebounce";
 import { isEmpty } from "lodash";
 import OutsideClickHandler from "react-outside-click-handler";
@@ -81,7 +80,7 @@ const Container = styled.div`
         position: absolute;
         background-color: white;
         top: 78px;
-        width: 500px;
+        width: 360px;
         padding: 16px 0;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         border-radius: 32px;
@@ -168,8 +167,6 @@ const RegisterRoomLocation: React.FC = () => {
   const onClickGetCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition(onSuccessGetLocation, (e) => {
       setLoding(true);
-      // console.log(e);
-      // alert(e?.message);
     });
   };
 
@@ -192,6 +189,7 @@ const RegisterRoomLocation: React.FC = () => {
     dispatch(registerRoomActions.setLongitude(value));
   };
 
+  // input창 클릭시 포커스
   const onClickInput = () => {
     if (inputRef.current) {
       inputRef.current.focus();
@@ -216,21 +214,6 @@ const RegisterRoomLocation: React.FC = () => {
       searchPlaces();
     }
   }, [searchKeyword]);
-
-  // // 근처 추천 장소 클릭시
-  // const onClickNearPlaces = () => {
-  //   setPopupOpened(false);
-  //   navigator.geolocation.getCurrentPosition(
-  //     ({ coords }) => {
-  //       setLocationDispatch("근처 추천 장소");
-  //       setLatitudeDispatch(coords.latitude);
-  //       setLongitudeDispatch(coords.longitude);
-  //     },
-  //     (e) => {
-  //       console.log(e);
-  //     }
-  //   );
-  // };
 
   // 검색된 장소 클릭시
   const onClickResult = async (placeId: string) => {
@@ -259,6 +242,7 @@ const RegisterRoomLocation: React.FC = () => {
           id="a"
           name="getloc"
           onClick={onSelect}
+          defaultChecked //기본 현재 위치 사용에 체크돼있음
         />
         <label>현재 위치 사용</label>
         <input
@@ -318,11 +302,6 @@ const RegisterRoomLocation: React.FC = () => {
               </div>
               {popupOpened && location !== "주소를 직접 입력해주세요." && (
                 <ul className="search-bar-location-results">
-                  {/* {!location && (
-                    <li role="presentation" onClick={onClickNearPlaces}>
-                      근처 추천 장소
-                    </li>
-                  )} */}
                   {!isEmpty(results) &&
                     results.map((result, index) => (
                       <li
@@ -340,11 +319,6 @@ const RegisterRoomLocation: React.FC = () => {
               )}
             </OutsideClickHandler>
           </div>
-          // <Input
-          //   label="주소를 직접 입력해주세요."
-          //   value={address}
-          // onChange={onSetAddress}
-          // />
         )}
       </div>
 
