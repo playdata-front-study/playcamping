@@ -14,7 +14,7 @@ const Container = styled.div`
 
   h2 {
     width: 480px;
-    margin: 80px 0 60px;
+    margin: 50px 0 60px;
     font-size: 50px;
   }
 `;

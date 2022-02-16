@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes } from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 import { useSelector } from "../../store";
@@ -107,6 +107,7 @@ const Container = styled.div<SelectorContainerProps>`
 
 interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
+  defaultValue?: string;
   options?: string[];
   value?: string;
   isValid?: boolean;
@@ -118,6 +119,7 @@ interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 
 const Selector: React.FC<IProps> = ({
   label,
+  defaultValue,
   options = [],
   isValid,
   useValidation = true,
@@ -141,6 +143,9 @@ const Selector: React.FC<IProps> = ({
               {option}
             </option>
           ))}
+          <option disabled selected hidden>
+            {defaultValue}
+          </option>
           {options.map((option, index) => (
             <option key={index} value={option}>
               {option}

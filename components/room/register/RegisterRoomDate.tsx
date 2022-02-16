@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -63,13 +64,19 @@ const RegisterRoomDate: React.FC = () => {
   const onChangeStartDate = (date: Date | null) => {
     console.log(date);
     dispatch(
-      registerRoomActions.setStartDate(date ? date.toISOString() : null)
+      registerRoomActions.setStartDate(
+        date ? moment(date, "YYYY-MM-dd").format() : null
+      )
     );
   };
   //예약 종료 날짜 변경 시
   const onChangeEndDate = (date: Date | null) => {
     console.log(date);
-    dispatch(registerRoomActions.setEndDate(date ? date.toISOString() : null));
+    dispatch(
+      registerRoomActions.setEndDate(
+        date ? moment(date, "YYYY-MM-dd").format() : null
+      )
+    );
   };
 
   return (

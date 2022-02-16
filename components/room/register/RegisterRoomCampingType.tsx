@@ -47,14 +47,10 @@ const RegisterRoomCampingType: React.FC = () => {
           type="register"
           value={campingType || undefined}
           label="하나를 선택해주세요."
+          defaultValue="하나를 선택해주세요."
           options={campingTypeList}
           onChange={onChangeCampingType}
         />
-        {/* <CheckboxGroup
-          value={campingType}
-          onChange={onChangeCampingType}
-          options={campingTypeList}
-        /> */}
       </div>
       <RegisterRoomFooter
         isValid={false}
