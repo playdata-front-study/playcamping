@@ -2,6 +2,8 @@
 //hostId는 숙소의 호스트로 api를 보낼 때 body에 userId를 보낼 예정임
 export type StoredRoomType = {
 	id: number;
+	campingType: string;
+	amenities: string[],
 	maximumGuestCount: number;
 	latitude: number;
 	longitude: number;
@@ -14,6 +16,7 @@ export type StoredRoomType = {
 	photos: string[];
 	title: string;
 	price: string;
+	description: string;
 	startDate: Date;
 	endDate: Date;
 	createdAt: Date;
