@@ -5,7 +5,6 @@ import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import CheckMarkIcon from "../../../public/static/svg/register/pink_check_mark.svg";
-import Button from "../../common/Button";
 import palette from "../../../styles/palette";
 
 const Container = styled.div`

@@ -7,7 +7,6 @@ import { useSelector } from "../../../store";
 import Input from "../../common/Input";
 import { makeMoneyString } from "../../../lib/utils";
 import { registerRoomActions } from "../../../store/registerRoom";
-import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;

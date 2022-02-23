@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 import { useSelector } from "../../store";
@@ -123,7 +123,6 @@ const Selector: React.FC<IProps> = ({
   options = [],
   isValid,
   useValidation = true,
-  errorMessage = "옵션을 선택하세요.",
   type = "normal",
   disabledOptions = [],
   ...props

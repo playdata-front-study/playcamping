@@ -6,7 +6,6 @@ import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 import Input from "../../common/Input";
-import RegisterRoomChecklist from "./RegisterRoomChecklist";
 
 const Container = styled.div`
   padding: 62px 30px 100px;

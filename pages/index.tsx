@@ -23,7 +23,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
   (store) => async () => {
     try {
       const data = await Data.room.getList(); //rooms.json에서 리스트 가져오기
-      store.dispatch(roomActions.setRooms(data.slice(0, 5))); //앞에 5개만 가져옴.
+      store.dispatch(roomActions.setRooms(data)); //앞에 5개만 가져옴.
     } catch (e) {
       console.log(e);
     }

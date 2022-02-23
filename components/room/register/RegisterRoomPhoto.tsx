@@ -18,7 +18,6 @@ import Button from "../../common/Button";
 
 import { uploadFileAPI } from "../../../lib/api/file";
 import RegisterRoomFooter from "./RegisterRoomFooter";
-import RegisterRoomChecklist from "./RegisterRoomChecklist";
 import { useDispatch } from "react-redux";
 import { registerRoomActions } from "../../../store/registerRoom";
 import RegisterRoomPhotoCardList from "./RegisterRoomPhotoCardList";

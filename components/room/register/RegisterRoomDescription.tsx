@@ -5,7 +5,6 @@ import { useSelector } from "../../../store";
 import { registerRoomActions } from "../../../store/registerRoom";
 import palette from "../../../styles/palette";
 import Textarea from "../../common/Textarea";
-import RegisterRoomChecklist from "./RegisterRoomChecklist";
 import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 import { useSelector } from "../../../store";
 import palette from "../../../styles/palette";
@@ -10,7 +10,6 @@ import useModal from "../../../hooks/useModal";
 import AuthModal from "../../auth/AuthModal";
 import { useRouter } from "next/router";
 import { makeReservationAPI } from "../../../lib/api/reservations";
-import { isEmpty } from "lodash";
 import moment from "moment";
 
 const Container = styled.div`

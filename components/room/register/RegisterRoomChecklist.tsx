@@ -3,8 +3,6 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 import { useSelector } from "../../../store";
 import RegisterRoomCheckStep from "./RegisterRoomCheckStep";
-import RegisterRoomFooter from "./RegisterRoomFooter";
-import RegisterRoomSubmitFooter from "./RegisterRoomSubmitFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
